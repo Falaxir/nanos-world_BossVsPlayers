@@ -3,6 +3,8 @@ One player is selected randomly to be the BOSS, he has huge amount of HP and som
 This gamemode is highly customisable thanks to JSON file format, you can create your own boss without coding knowledge!
 To learn more how to customise this gamemode, go the WIKI on this repository
 
+![alt text](https://falaxir.fr/images/nanos/BossVsPlayersThumbai.png)
+
 # Installation
 
 It is not recommanded to download and run from the lastest source, please go to the releases to download the source from there.
