@@ -1,16 +1,19 @@
 # nanos-world_BossVsPlayers
-One player is selected randomly to be the BOSS, he has huge amount of HP and some abilities. Other Players must kill him before he kills you!
-This gamemode is highly customisable thanks to JSON file format, you can create your own boss without coding knowledge!
-To learn more how to customise this gamemode, go the WIKI on this repository
+* One player is selected randomly to be the BOSS, he has huge amount of HP and some abilities. Other Players must kill him before he kills you!
+* This gamemode is highly customisable thanks to JSON file format, you can create your own boss without coding knowledge!
+* To learn more how to customise this gamemode, go the WIKI on this repository
 
 ![alt text](https://falaxir.fr/images/nanos/BossVsPlayersThumbai.png)
 
 # Installation
 
-It is not recommanded to download and run from the lastest source, please go to the releases to download the source from there.
-Once done, simply download `Source.zip` and extract it to the `Packages` folder on nanos world server.
-Download the Assets `BossVsPlayers_Asset.zip`(it can be on another older release) and extract it to the `Assets` folder on nanos world server.
-Now you can start your server!
+You have 2 ways to get the package :
+* You can get it directly from the repo source (not in released), it will be the latest but not the most stable.
+* Or you can get it throught the release tab, then the file `Source.zip` (Recommanded)
+### The release tab will get updated only on major releases and if the Asset pack change, The latest version of the package will always be the repo source and not the released tab
+
+### You need the assets, the name of the file is : `BossVsPlayers_Asset.zip`, it is on the releases tab
+You can download the latest Asset here : https://github.com/Falaxir/nanos-world_BossVsPlayers/releases/latest/download/BossVsPlayers_Asset.zip
 
 # Configuration
 
