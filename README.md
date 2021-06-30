@@ -16,6 +16,10 @@ Now you can start your server!
 
 Please go to the WIKI page
 
+# To do
+
+Custom player spawn location depending on the map the server is.
+
 # Licence
 
 Please check the licence file on this repository
