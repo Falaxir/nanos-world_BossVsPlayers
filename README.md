@@ -16,9 +16,15 @@ Now you can start your server!
 
 Please go to the WIKI page
 
+# Knowed bugs
+
+The spectator can be buggy some times (need to click multiple times to switch player)
+A Spectator can spectate another spectator
+
 # To do
 
 Custom player spawn location depending on the map the server is.
+Add more error checker (ex: if json file is incorrect, ...)
 
 # Licence
 
