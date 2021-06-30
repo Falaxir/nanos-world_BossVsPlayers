@@ -1,0 +1,74 @@
+{
+  "BossName": "AgentSmith",
+  "BossModelFunction": "BossModel_AgentSmith",
+  "BossDescription": "Now you are goind to die",
+  "BossSpeedMultiplier": 1.1,
+  "BossRageMultiplier": 1.0,
+  "BossJumpMultiplier": 3.0,
+  "BossSpecialMultiplier": 2.0,
+  "BossHealthMultiplier": 2.0,
+  "BossWeapon": "",
+  "BossAbilities": {
+    "JumpFunction": "Ability_Jump",
+    "RageFunction": "Ability_Uber",
+    "SpecialFunction": "Ability_Speed"
+  },
+  "BossImages": {
+    "BeginImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "EndWinImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "EndLooseImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilityJumpImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilityRageImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilitySpecialImage": {
+      "Image": "",
+      "Time": 0
+    }
+  },
+  "BossSoundMusic": [
+    "BossVsPlayers::AgentSmith_bgm"
+  ],
+  "BossSoundBegin": [
+    "BossVsPlayers::AgentSmith_intro"
+  ],
+  "BossSoundDeath": [
+    "BossVsPlayers::AgentSmith_persist"
+  ],
+  "BossSoundWin": [
+    "BossVsPlayers::AgentSmith_hahahaha"
+  ],
+  "BossSoundPlayerDeath": [
+    ""
+  ],
+  "BossSoundLastMan": [
+    "BossVsPlayers::AgentSmith_persist"
+  ],
+  "BossSoundCriticalHit": [
+    ""
+  ],
+  "BossSoundAbilities": {
+    "Jump": [
+      "BossVsPlayers::AgentSmith_jump"
+    ],
+    "Rage": [
+      "BossVsPlayers::AgentSmith_hahahaha"
+    ],
+    "Special": [
+      "BossVsPlayers::Sonic_Dash"
+    ]
+  }
+}

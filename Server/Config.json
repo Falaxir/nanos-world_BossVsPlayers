@@ -1,0 +1,23 @@
+{
+  "RoundTimeLimitSeconds": 540,
+  "RoundPrepareTimeSeconds": 5,
+  "GlobalSpeedMultiplier": 1.2,
+  "TimeModulePackageEnabled": "false",
+  "PlayerCharacters": [
+    "NanosWorld::SK_Male",
+    "NanosWorld::SK_Female"
+  ],
+  "PlayerSpawnLocations": [
+    "-2352, -6579, 313",
+    "-7831, -7635, 197",
+    "-9481, -2884, 185",
+    "-8014, -754, 394",
+    "-4014, -4765, 714"
+  ],
+  "BossSpawnLocations": [
+    "4084, 8175, 238"
+  ],
+  "AdministratorsId": [
+    "8a7cbab7-a0de-420c-b997-771b723de1d3"
+  ]
+}

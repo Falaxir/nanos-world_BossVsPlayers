@@ -1,0 +1,77 @@
+{
+  "BossName": "BionicCommando",
+  "BossModelFunction": "BossModel_BionicCommando",
+  "BossDescription": "Exterminate humans",
+  "BossSpeedMultiplier": 1.05,
+  "BossRageMultiplier": 1.0,
+  "BossJumpMultiplier": 2.0,
+  "BossSpecialMultiplier": 2.0,
+  "BossHealthMultiplier": 2.0,
+  "BossWeapon": "",
+  "BossAbilities": {
+    "JumpFunction": "Ability_Jump",
+    "RageFunction": "Ability_NukeRocketLauncher",
+    "SpecialFunction": "Ability_Speed"
+  },
+  "BossImages": {
+    "BeginImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "EndWinImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "EndLooseImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilityJumpImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilityRageImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilitySpecialImage": {
+      "Image": "",
+      "Time": 0
+    }
+  },
+  "BossSoundMusic": [
+    "BossVsPlayers::bionic_commando_theme"
+  ],
+  "BossSoundBegin": [
+    "BossVsPlayers::bionic_commando_intro",
+    "BossVsPlayers::bionic_commando_intro2",
+    "BossVsPlayers::bionic_commando_intro3"
+  ],
+  "BossSoundDeath": [
+    "BossVsPlayers::bionic_commando_fail"
+  ],
+  "BossSoundWin": [
+    "BossVsPlayers::bionic_commando_win"
+  ],
+  "BossSoundPlayerDeath": [
+    "BossVsPlayers::bionic_commando_kill"
+  ],
+  "BossSoundLastMan": [
+    "BossVsPlayers::bionic_commando_lastman",
+    "BossVsPlayers::bionic_commando_lastman2"
+  ],
+  "BossSoundCriticalHit": [
+    ""
+  ],
+  "BossSoundAbilities": {
+    "Jump": [
+      "BossVsPlayers::bionic_commando_jump"
+    ],
+    "Rage": [
+      "BossVsPlayers::bionic_commando_rage"
+    ],
+    "Special": [
+      "BossVsPlayers::Sonic_Dash"
+    ]
+  }
+}

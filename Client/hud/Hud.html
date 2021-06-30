@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="hud.css">
+        <script src="hud.js"></script>
+    </head>
+
+    <body>
+        <div class="hud_top">
+            <div class="hud-item" id="hud_players">Loading...</div>
+            <div class="hud-item" id="hud_time">Loading...</div>
+            <div class="hud-item" id="hud_boss">Loading...</div>
+        </div>
+        <div class="hud-adverts-important" id="advert_important">Loading...</div>
+        <div class="hud-adverts">
+            <div class="hud-adverts-items" id="hud_advert_one">P</div>
+            <div class="hud-adverts-items" id="hud_advert_two">P</div>
+        </div>
+
+        <div class="hud_bottom_advert_class" id="hud_bottom_advert">
+            <div class="hud-adverts-items-bottom" id="hud_bottom_advert_two">D</div>
+            <div class="hud-adverts-items-bottom" id="hud_bottom_advert_one">P</div>
+        </div>
+
+        <div class="hud-bottom-boss-container" id="hud-bottom-boss-container-id">
+            <div class="hud-bottom-boss">
+                <p id="hud-boss-rage">Rage 0%</p>
+            </div>
+            <div class="hud-bottom-boss">
+                <p id="hud-boss-jump">Loading...</p>
+            </div>
+            <div class="hud-bottom-boss">
+                <p id="hud-boss-special">Loading...</p>
+            </div>
+        </div>
+        <div id="voice_chats">
+            <!-- <span class="voice_chat SyedMuhammad">Player</span> -->
+        </div>
+
+        <!-- Health container (black background) -->
+        <div id="health_container">
+            <img src="images/health.png">
+            <!-- Health value -->
+            <span id="health_current">100</span>
+        </div>
+
+        <!-- Weapon Ammo container (black background) -->
+        <div id="weapon_ammo_container">
+            <!-- Ammo Clip value -->
+            <span id="weapon_ammo_clip">30</span>
+            <span id="weapon_ammo_separator">/</span>
+            <!-- Ammo Bag value -->
+            <span id="weapon_ammo_bag">1000</span>
+        </div>
+    </body>
+</html>

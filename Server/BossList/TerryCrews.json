@@ -1,0 +1,77 @@
+{
+  "BossName": "TerryCrews",
+  "BossModelFunction": "BossModel_TerryCrews",
+  "BossDescription": "Old spice body wash can block odors for more than 16 hours!",
+  "BossSpeedMultiplier": 1.1,
+  "BossRageMultiplier": 1.0,
+  "BossJumpMultiplier": 3.0,
+  "BossSpecialMultiplier": 2.0,
+  "BossHealthMultiplier": 2.0,
+  "BossWeapon": "",
+  "BossAbilities": {
+    "JumpFunction": "Ability_Jump",
+    "RageFunction": "Ability_Explosion",
+    "SpecialFunction": "Ability_Speed"
+  },
+  "BossImages": {
+    "BeginImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "EndWinImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "EndLooseImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilityJumpImage": {
+      "Image": "",
+      "Time": 0
+    },
+    "AbilityRageImage": {
+      "Image": "AbilityImages/WhiteExplosion.gif",
+      "Time": 3
+    },
+    "AbilitySpecialImage": {
+      "Image": "",
+      "Time": 0
+    }
+  },
+  "BossSoundMusic": [
+    "BossVsPlayers::THE_POWER_OF_TERRY_Official_Instrumental"
+  ],
+  "BossSoundBegin": [
+    "BossVsPlayers::TerryCrews_old_spice_all_blocker_body_wash",
+    "BossVsPlayers::TerryCrews_ooooooooo"
+  ],
+  "BossSoundDeath": [
+    "BossVsPlayers::TerryCrews_oh_no"
+  ],
+  "BossSoundWin": [
+    "BossVsPlayers::TerryCrews_popopower"
+  ],
+  "BossSoundPlayerDeath": [
+    "BossVsPlayers::TerryCrews_block",
+    "BossVsPlayers::TerryCrews_double_kill"
+  ],
+  "BossSoundLastMan": [
+    "BossVsPlayers::TerryCrews_outro"
+  ],
+  "BossSoundCriticalHit": [
+    "BossVsPlayers::TerryCrews_haaaaaaaaaaa"
+  ],
+  "BossSoundAbilities": {
+    "Jump": [
+      "BossVsPlayers::TerryCrews_ooooooooo"
+    ],
+    "Rage": [
+      "BossVsPlayers::TerryCrews_double_sun_power",
+      "BossVsPlayers::TerryCrews_explosion"
+    ],
+    "Special": [
+      "BossVsPlayers::TerryCrews_outro"
+    ]
+  }
+}
