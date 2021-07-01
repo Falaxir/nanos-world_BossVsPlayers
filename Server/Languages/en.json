@@ -19,7 +19,7 @@
   "HUD_Ability_Special_Loading": "Special at __PERCENTAGE__%",
   "HUD_Ability_Special_Ready": "Special READY (press G)",
   "CHAT_LanguageChanged": "[<orange>BVP</>] <green>Language changed to: __LANGUAGE__</>",
-  "CHAT_WelcomeMessage": "[<orange>BVP</>] <green>Welcome to Falarium Server</>",
+  "CHAT_WelcomeMessage": "[<orange>BVP</>] <green>Welcome to BossVsPlayers Gamemode!</>",
   "CHAT_RoundBegin": "[<orange>BVP</>] <green>Press F4 to open options(Volume,...). Type /kill to suicide</>",
   "CHAT_AmmoResupplied": "[<orange>BVP</>] <green>Your ammo has been ressuplied</>",
   "CHAT_PermissionDenied": "[<orange>BVP</>] <red>You do not have permission to do this command</>",
