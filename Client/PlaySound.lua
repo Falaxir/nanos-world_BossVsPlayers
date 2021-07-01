@@ -58,48 +58,48 @@ end)
 Events:Subscribe("BVP_Client_PlayAnnouncementSound", function (state, time)
     if state == 2 then
         if time == 60 then
-            playEffect("BossVsPlayers::announcer_ends_60sec")
+            playEffect("boss-vs-players-assets::announcer_ends_60sec")
         end
         if time == 30 then
-            playEffect("BossVsPlayers::announcer_ends_30sec")
+            playEffect("boss-vs-players-assets::announcer_ends_30sec")
         end
         if time == 10 then
-            playEffect("BossVsPlayers::announcer_ends_10sec")
+            playEffect("boss-vs-players-assets::announcer_ends_10sec")
         end
         if time == 5 then
-            playEffect("BossVsPlayers::announcer_ends_5sec")
+            playEffect("boss-vs-players-assets::announcer_ends_5sec")
         end
         if time == 4 then
-            playEffect("BossVsPlayers::announcer_ends_4sec")
+            playEffect("boss-vs-players-assets::announcer_ends_4sec")
         end
         if time == 3 then
-            playEffect("BossVsPlayers::announcer_ends_3sec")
+            playEffect("boss-vs-players-assets::announcer_ends_3sec")
         end
         if time == 2 then
-            playEffect("BossVsPlayers::announcer_ends_2sec")
+            playEffect("boss-vs-players-assets::announcer_ends_2sec")
         end
         if time == 1 then
-            playEffect("BossVsPlayers::announcer_ends_1sec")
+            playEffect("boss-vs-players-assets::announcer_ends_1sec")
         end
     end
     if state == 1 then
         if time == 10 then
-            playEffect("BossVsPlayers::announcer_begins_10sec")
+            playEffect("boss-vs-players-assets::announcer_begins_10sec")
         end
         if time == 5 then
-            playEffect("BossVsPlayers::announcer_begins_5sec")
+            playEffect("boss-vs-players-assets::announcer_begins_5sec")
         end
         if time == 4 then
-            playEffect("BossVsPlayers::announcer_begins_4sec")
+            playEffect("boss-vs-players-assets::announcer_begins_4sec")
         end
         if time == 3 then
-            playEffect("BossVsPlayers::announcer_begins_3sec")
+            playEffect("boss-vs-players-assets::announcer_begins_3sec")
         end
         if time == 2 then
-            playEffect("BossVsPlayers::announcer_begins_2sec")
+            playEffect("boss-vs-players-assets::announcer_begins_2sec")
         end
         if time == 1 then
-            playEffect("BossVsPlayers::announcer_begins_1sec")
+            playEffect("boss-vs-players-assets::announcer_begins_1sec")
         end
     end
 end)

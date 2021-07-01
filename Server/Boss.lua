@@ -63,7 +63,7 @@ Events:Subscribe("BVP_BossAbilityExecute_Jump", function(player)
     if #bossJson.BossSoundAbilities["Jump"] > 0 then
         Events:BroadcastRemote("BVP_Client_PlayEffect", {bossJson.BossSoundAbilities["Jump"][math.random(#bossJson.BossSoundAbilities["Jump"])]})
     end
-    Package:Call("BossVsPlayers", bossJson.BossAbilities["JumpFunction"], {player})
+    Package:Call("boss-vs-players", bossJson.BossAbilities["JumpFunction"], {player})
 end)
 
 Events:Subscribe("BVP_BossAbilityExecute_Rage", function(player)
@@ -75,7 +75,7 @@ Events:Subscribe("BVP_BossAbilityExecute_Rage", function(player)
     if #bossJson.BossSoundAbilities["Rage"] > 0 then
         Events:BroadcastRemote("BVP_Client_PlayEffect", {bossJson.BossSoundAbilities["Rage"][math.random(#bossJson.BossSoundAbilities["Rage"])]})
     end
-    Package:Call("BossVsPlayers", bossJson.BossAbilities["RageFunction"], {player})
+    Package:Call("boss-vs-players", bossJson.BossAbilities["RageFunction"], {player})
 end)
 
 Events:Subscribe("BVP_BossAbilityExecute_Special", function(player)
@@ -87,5 +87,5 @@ Events:Subscribe("BVP_BossAbilityExecute_Special", function(player)
     if #bossJson.BossSoundAbilities["Special"] > 0 then
         Events:BroadcastRemote("BVP_Client_PlayEffect", {bossJson.BossSoundAbilities["Special"][math.random(#bossJson.BossSoundAbilities["Special"])]})
     end
-    Package:Call("BossVsPlayers", bossJson.BossAbilities["SpecialFunction"], {player})
+    Package:Call("boss-vs-players", bossJson.BossAbilities["SpecialFunction"], {player})
 end)

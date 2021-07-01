@@ -11,9 +11,11 @@ You have 2 ways to get the package :
 * You can get it directly from the repo source (not in released), it will be the latest but not the most stable.
 * Or you can get it throught the release tab, then the file `Source.zip` (Recommanded)
 ### The release tab will get updated only on major releases and if the Asset pack change, The latest version of the package will always be the repo source and not the released tab
+* Then, extract the source and rename the folder to "boss-vs-players"
 
 ### You need the assets, the name of the file is : `BossVsPlayers_Asset.zip`, it is on the releases tab
 You can download the latest Asset here : https://github.com/Falaxir/nanos-world_BossVsPlayers/releases/latest/download/BossVsPlayers_Asset.zip
+* Then, rename the Asset folder to "boss-vs-players-assets" and put it into "Assets" folder from the server
 
 # Configuration
 

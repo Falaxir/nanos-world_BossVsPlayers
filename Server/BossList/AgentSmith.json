@@ -40,35 +40,35 @@
     }
   },
   "BossSoundMusic": [
-    "BossVsPlayers::AgentSmith_bgm"
+    "boss-vs-players-assets::AgentSmith_bgm"
   ],
   "BossSoundBegin": [
-    "BossVsPlayers::AgentSmith_intro"
+    "boss-vs-players-assets::AgentSmith_intro"
   ],
   "BossSoundDeath": [
-    "BossVsPlayers::AgentSmith_persist"
+    "boss-vs-players-assets::AgentSmith_persist"
   ],
   "BossSoundWin": [
-    "BossVsPlayers::AgentSmith_hahahaha"
+    "boss-vs-players-assets::AgentSmith_hahahaha"
   ],
   "BossSoundPlayerDeath": [
     ""
   ],
   "BossSoundLastMan": [
-    "BossVsPlayers::AgentSmith_persist"
+    "boss-vs-players-assets::AgentSmith_persist"
   ],
   "BossSoundCriticalHit": [
     ""
   ],
   "BossSoundAbilities": {
     "Jump": [
-      "BossVsPlayers::AgentSmith_jump"
+      "boss-vs-players-assets::AgentSmith_jump"
     ],
     "Rage": [
-      "BossVsPlayers::AgentSmith_hahahaha"
+      "boss-vs-players-assets::AgentSmith_hahahaha"
     ],
     "Special": [
-      "BossVsPlayers::Sonic_Dash"
+      "boss-vs-players-assets::Sonic_Dash"
     ]
   }
 }

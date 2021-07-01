@@ -42,7 +42,7 @@ end)
 
 -- When package loads, verify if LocalPlayer already exists (eg. when reloading the package), then try to get and store it's controlled character
 Package:Subscribe("Load", function()
-    Client:SetDiscordActivity("Waiting Round Start", "Boss VS Players Gamemode", "screenshot_173", "Falarium Servers")
+    Client:SetDiscordActivity("Waiting Round Start", "Boss VS Players Gamemode", "screenshot_173", "by Falaxir")
     if (NanosWorld:GetLocalPlayer() ~= nil) then
         UpdateLocalCharacter(NanosWorld:GetLocalPlayer():GetControlledCharacter())
     end

@@ -1,6 +1,6 @@
 function BossModel_AgentSmith(player, BossData)
     -- Minimum Required
-    local BossCharacter = BossCreateStartRound(BossData, "BossVsPlayers::AgentSmith")
+    local BossCharacter = BossCreateStartRound(BossData, "boss-vs-players-assets::AgentSmith")
     player:Possess(BossCharacter)
     -- End minimum required
 end

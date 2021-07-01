@@ -40,38 +40,38 @@
     }
   },
   "BossSoundMusic": [
-    "BossVsPlayers::THE_POWER_OF_TERRY_Official_Instrumental"
+    "boss-vs-players-assets::THE_POWER_OF_TERRY_Official_Instrumental"
   ],
   "BossSoundBegin": [
-    "BossVsPlayers::TerryCrews_old_spice_all_blocker_body_wash",
-    "BossVsPlayers::TerryCrews_ooooooooo"
+    "boss-vs-players-assets::TerryCrews_old_spice_all_blocker_body_wash",
+    "boss-vs-players-assets::TerryCrews_ooooooooo"
   ],
   "BossSoundDeath": [
-    "BossVsPlayers::TerryCrews_oh_no"
+    "boss-vs-players-assets::TerryCrews_oh_no"
   ],
   "BossSoundWin": [
-    "BossVsPlayers::TerryCrews_popopower"
+    "boss-vs-players-assets::TerryCrews_popopower"
   ],
   "BossSoundPlayerDeath": [
-    "BossVsPlayers::TerryCrews_block",
-    "BossVsPlayers::TerryCrews_double_kill"
+    "boss-vs-players-assets::TerryCrews_block",
+    "boss-vs-players-assets::TerryCrews_double_kill"
   ],
   "BossSoundLastMan": [
-    "BossVsPlayers::TerryCrews_outro"
+    "boss-vs-players-assets::TerryCrews_outro"
   ],
   "BossSoundCriticalHit": [
-    "BossVsPlayers::TerryCrews_haaaaaaaaaaa"
+    "boss-vs-players-assets::TerryCrews_haaaaaaaaaaa"
   ],
   "BossSoundAbilities": {
     "Jump": [
-      "BossVsPlayers::TerryCrews_ooooooooo"
+      "boss-vs-players-assets::TerryCrews_ooooooooo"
     ],
     "Rage": [
-      "BossVsPlayers::TerryCrews_double_sun_power",
-      "BossVsPlayers::TerryCrews_explosion"
+      "boss-vs-players-assets::TerryCrews_double_sun_power",
+      "boss-vs-players-assets::TerryCrews_explosion"
     ],
     "Special": [
-      "BossVsPlayers::TerryCrews_outro"
+      "boss-vs-players-assets::TerryCrews_outro"
     ]
   }
 }

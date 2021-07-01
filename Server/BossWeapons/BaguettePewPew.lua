@@ -13,7 +13,7 @@ function Weapon_BaguettePewPew(player)
         local forward_vector = control_rotation:GetForwardVector()
         local spawn_location = shooter:GetLocation() + Vector(0, 0, 40) + forward_vector * Vector(200)
 
-        local prop = Prop(spawn_location, control_rotation, "BossVsPlayers::bread", 1)
+        local prop = Prop(spawn_location, control_rotation, "boss-vs-players-assets::bread", 1)
         prop:SetCollision(0)
         prop:SetScale(Vector(3, 3, 3))
         prop:AddImpulse(forward_vector * Vector(3000))

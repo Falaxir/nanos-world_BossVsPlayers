@@ -40,38 +40,38 @@
     }
   },
   "BossSoundMusic": [
-    "BossVsPlayers::bionic_commando_theme"
+    "boss-vs-players-assets::bionic_commando_theme"
   ],
   "BossSoundBegin": [
-    "BossVsPlayers::bionic_commando_intro",
-    "BossVsPlayers::bionic_commando_intro2",
-    "BossVsPlayers::bionic_commando_intro3"
+    "boss-vs-players-assets::bionic_commando_intro",
+    "boss-vs-players-assets::bionic_commando_intro2",
+    "boss-vs-players-assets::bionic_commando_intro3"
   ],
   "BossSoundDeath": [
-    "BossVsPlayers::bionic_commando_fail"
+    "boss-vs-players-assets::bionic_commando_fail"
   ],
   "BossSoundWin": [
-    "BossVsPlayers::bionic_commando_win"
+    "boss-vs-players-assets::bionic_commando_win"
   ],
   "BossSoundPlayerDeath": [
-    "BossVsPlayers::bionic_commando_kill"
+    "boss-vs-players-assets::bionic_commando_kill"
   ],
   "BossSoundLastMan": [
-    "BossVsPlayers::bionic_commando_lastman",
-    "BossVsPlayers::bionic_commando_lastman2"
+    "boss-vs-players-assets::bionic_commando_lastman",
+    "boss-vs-players-assets::bionic_commando_lastman2"
   ],
   "BossSoundCriticalHit": [
     ""
   ],
   "BossSoundAbilities": {
     "Jump": [
-      "BossVsPlayers::bionic_commando_jump"
+      "boss-vs-players-assets::bionic_commando_jump"
     ],
     "Rage": [
-      "BossVsPlayers::bionic_commando_rage"
+      "boss-vs-players-assets::bionic_commando_rage"
     ],
     "Special": [
-      "BossVsPlayers::Sonic_Dash"
+      "boss-vs-players-assets::Sonic_Dash"
     ]
   }
 }

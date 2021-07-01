@@ -1,7 +1,7 @@
 # Package Configurations
 [package]
 	# Package Name
-	name =					"BossVsPlayers"
+	name =					"boss-vs-players"
 	# Contributors
 	author =				"Falaxir"
 	# Version
@@ -16,5 +16,5 @@
 	auto_cleanup =			true
 	# Asset Packs Requirements
 	assets_requirements = [
-		"BossVsPlayers",
+		"boss-vs-players-assets",
 	]

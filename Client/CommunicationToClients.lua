@@ -27,12 +27,12 @@ Events:Subscribe("BVP_Client_StartGame", function(bossData, BossPlayer)
     local playername = BossPlayer:GetAccountName()
     local LocalPlayer = NanosWorld:GetLocalPlayer()
     if LocalPlayer:GetControlledCharacter():GetTeam() == 1 then
-        Client:SetDiscordActivity("Playing as the BOSS", "Boss VS Players Gamemode", "screenshot_173", "Falarium Servers")
+        Client:SetDiscordActivity("Playing as the BOSS", "Boss VS Players Gamemode", "screenshot_173", "by Falaxir")
         LocalPlayer:SetValue("BVP_BossPosses", {bossData})
         LocalPlayer:SetValue("BVP_BossPoints", 0)
         Package:SetPersistentData("BVP_BossPoints", 0)
     else
-        Client:SetDiscordActivity("Playing as a Player", "Boss VS Players Gamemode", "screenshot_173", "Falarium Servers")
+        Client:SetDiscordActivity("Playing as a Player", "Boss VS Players Gamemode", "screenshot_173", "by Falaxir")
         local points = LocalPlayer:GetValue("BVP_BossPoints")
         LocalPlayer:SetValue("BVP_BossPoints", points + 1)
         Package:SetPersistentData("BVP_BossPoints", points + 1)
@@ -163,7 +163,7 @@ end)
 
 -- winner : 0 = nul ; 1 = boss ; 2 = players
 Events:Subscribe("BVP_Client_EndGame", function(winner)
-    Client:SetDiscordActivity("Waiting Round Start", "Boss VS Players Gamemode", "screenshot_173", "Falarium Servers")
+    Client:SetDiscordActivity("Waiting Round Start", "Boss VS Players Gamemode", "screenshot_173", "by Falaxir")
     MainHUD:CallEvent("BVP_HUD_Boss_Container_Display", {0})
     Events:Call("BVP_Client_HUD_Advert_important", {"HUD_Conditions_End", nil, nil})
     if winner == 1 then

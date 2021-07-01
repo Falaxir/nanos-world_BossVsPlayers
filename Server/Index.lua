@@ -98,7 +98,7 @@ function SpawnBossRandom(player)
 	for key,value in pairs(bosses)
 	do
 		if key == random then
-			Package:Call("BossVsPlayers", value.BossModelFunction, {player, value})
+			Package:Call("boss-vs-players", value.BossModelFunction, {player, value})
 			Server:SetValue("BVP_BossData", value)
 			Server:SetValue("BVP_BossPlayer", player)
 			return
