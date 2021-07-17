@@ -5,4 +5,4 @@ function BossModel_BionicCommando(player, BossData)
     -- End minimum required
 end
 
-Package:Export("BossModel_BionicCommando", BossModel_BionicCommando)
+Package.Export("BossModel_BionicCommando", BossModel_BionicCommando)

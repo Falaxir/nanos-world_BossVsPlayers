@@ -49,35 +49,35 @@ WinStates : 0: nil, 1: boss, 2: teammates
 Teams : 0: nil, 1: boss, 2: teammates
 --]]
 
-Package:Require("Config.lua")
+Package.Require("Config.lua")
 ConfigLoad()
 
-Package:Require("Languages.lua")
+Package.Require("Languages.lua")
 LanguagesLoad()
 
-Package:Subscribe("Load", function()
-	Server:SetValue("BVP_ForceWait", false)
-	Server:SetValue("BVP_GameState", 0)
-	Events:BroadcastRemote("BVP_Client_ChangeGameState", {0})
-	Server:SetValue("BVP_TimeLimit", 0)
-	for i, v in pairs(TriggerRessuplyList) do
+Package.Subscribe("Load", function()
+	Server.SetValue("BVP_ForceWait", false)
+	Server.SetValue("BVP_GameState", 0)
+	Events.BroadcastRemote("BVP_Client_ChangeGameState", 0)
+	Server.SetValue("BVP_TimeLimit", 0)
+	for i, v in pairs(BVP_CONFIG.ResupplyLocations) do
 		SpawnNewAmmoRessuply(v)
 	end
 end)
 
-Package:Require("Events.lua")
-Package:Require("Timer.lua")
-Package:Require("Boss.lua")
-Package:Require("Abilities.lua")
-Package:Require("BossModels.lua")
-Package:Require("Commands.lua")
-Package:Require("BossWeapons.lua")
-Package:Require("PlayerCustomisation.lua")
-Package:Require("TriggerCreation.lua")
-Package:Require("SpawningMaps/TestingMap.lua")
-Package:RequirePackage("NanosWorldWeapons")
+Package.Require("Events.lua")
+Package.Require("Timer.lua")
+Package.Require("Boss.lua")
+Package.Require("Abilities.lua")
+Package.Require("BossModels.lua")
+Package.Require("Commands.lua")
+Package.Require("BossWeapons.lua")
+Package.Require("PlayerCustomisation.lua")
+Package.Require("TriggerCreation.lua")
+Package.Require("SpawningMaps/TestingMap.lua")
+Package.RequirePackage("NanosWorldWeapons")
 
-Server:SetValue("BVP_BossList", {})
+Server.SetValue("BVP_BossList", {})
 
 BossLoad()
 AbilityLoad()
@@ -92,15 +92,15 @@ function reverseTable(t)
 end
 
 function SpawnBossRandom(player)
-	local bosses = Server:GetValue("BVP_BossList")
+	local bosses = Server.GetValue("BVP_BossList")
 	local random = math.random(#bosses)
 
 	for key,value in pairs(bosses)
 	do
 		if key == random then
-			Package:Call("boss-vs-players", value.BossModelFunction, {player, value})
-			Server:SetValue("BVP_BossData", value)
-			Server:SetValue("BVP_BossPlayer", player)
+			Package.Call("boss-vs-players", value.BossModelFunction, player, value)
+			Server.SetValue("BVP_BossData", value)
+			Server.SetValue("BVP_BossPlayer", player)
 			return
 		end
 	end
@@ -108,7 +108,7 @@ end
 
 function ChooseSpawnRandomBoss()
 	local playerBossPoints = {}
-	local PlayerNames = NanosWorld:GetPlayers()
+	local PlayerNames = Player.GetAll()
 
 	for key,value in pairs(PlayerNames)
 	do
@@ -130,42 +130,42 @@ function ChooseSpawnRandomBoss()
 		if bossPoint == highest then
 			SpawnBossRandom(value)
 			value:SetValue("BVP_BossPoints", 0)
-			Server:SetValue("BVP_AliveBossPlayers", 1)
+			Server.SetValue("BVP_AliveBossPlayers", 1)
 			return
 		end
 	end
 end
 
-Player:Subscribe("Spawn", function(player)
-	Events:CallRemote("BVP_Client_GetLanguages", player, {LANGUAGES_LIST})
-	Events:CallRemote("BVP_Client_GetPermanentData", player, {})
+Player.Subscribe("Spawn", function(player)
+	Events.CallRemote("BVP_Client_GetLanguages", player, LANGUAGES_LIST)
+	Events.CallRemote("BVP_Client_GetPermanentData", player)
 end)
 
-Player:Subscribe("Ready", function(player)
-	local state = Server:GetValue("BVP_GameState")
-	Events:CallRemote("BVP_Client_SendPrivateChatMessage", player, {"CHAT_WelcomeMessage", nil})
-	Server:BroadcastChatMessage("<cyan>" .. player:GetName() .. "</> has joined the server")
+Player.Subscribe("Ready", function(player)
+	local state = Server.GetValue("BVP_GameState")
+	Events.CallRemote("BVP_Client_SendPrivateChatMessage", player, "CHAT_WelcomeMessage", nil)
+	Server.BroadcastChatMessage("<cyan>" .. player:GetName() .. "</> has joined the server")
 	if state ~= 2 then
-		Events:CallRemote("BVP_Client_HUD_Advert_important", player, {"HUD_Top_WaitBeginning", nil, nil})
+		Events.CallRemote("BVP_Client_HUD_Advert_important", player, "HUD_Top_WaitBeginning", nil, nil)
 		return true
 	end
 	if state == 2 then
-		Events:Call("BVP_GoSpectator", {player})
+		Events.Call("BVP_GoSpectator", player)
 	end
 end)
 
-Player:Subscribe("Destroy", function(player)
-	Server:BroadcastChatMessage("<cyan>" .. player:GetName() .. "</> has left the server")
+Player.Subscribe("Destroy", function(player)
+	Server.BroadcastChatMessage("<cyan>" .. player:GetName() .. "</> has left the server")
 end)
 
-Player:Subscribe("UnPossess", function(player, character)
+Player.Subscribe("UnPossess", function(player, character)
 	if character ~= nil then
-		Events:Call("CharacterCheckTeam", {character})
+		Events.Call("CharacterCheckTeam", character)
 	end
 end)
 
 function SpawnPlayers()
-	for key,value in pairs(NanosWorld:GetPlayers())
+	for key,value in pairs(Player.GetAll())
 	do
 		if value:GetControlledCharacter() == nil then
 			-- Test player location : Vector(0, 0, 100)
@@ -191,9 +191,9 @@ function SpawnPlayers()
 			value:SetValue("BVP_BossPoints", oldBossPoint + 1)
 			PlayerCharacters_local:Subscribe("Death", function(character, last_damage_taken, last_bone_damaged, damage_type_reason, hit_from_direction, instigator)
 				if player ~= nil then
-					Server:BroadcastChatMessage("<cyan>" .. instigator:GetName() .. "</> killed <cyan>" .. value:GetName() .. "</>")
+					Server.BroadcastChatMessage("<cyan>" .. instigator:GetName() .. "</> killed <cyan>" .. value:GetName() .. "</>")
 				else
-					Server:BroadcastChatMessage("<cyan>" .. value:GetName() .. "</> died")
+					Server.BroadcastChatMessage("<cyan>" .. value:GetName() .. "</> died")
 				end
 				local PlayerControlled = character:GetPlayer()
 				if PlayerControlled ~= nil then

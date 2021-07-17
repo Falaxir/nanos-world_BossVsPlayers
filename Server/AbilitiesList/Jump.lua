@@ -8,4 +8,4 @@ function Ability_Jump(player)
     end
 end
 
-Package:Export("Ability_Jump", Ability_Jump)
+Package.Export("Ability_Jump", Ability_Jump)

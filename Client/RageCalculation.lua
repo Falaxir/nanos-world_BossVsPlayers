@@ -16,15 +16,15 @@
 
 --]]
 
-Events:Subscribe("BVP_Client_Rage_Calculation", function(BossData)
-    if NanosWorld:GetLocalPlayer():GetControlledCharacter() == nil then return end
-    if NanosWorld:GetLocalPlayer():GetControlledCharacter():GetTeam() ~= 1 then return end
-    local playerChara = NanosWorld:GetLocalPlayer():GetControlledCharacter()
-    MainHUD:CallEvent("BVP_HUD_Boss_Container_Display", {0})
+Events.Subscribe("BVP_Client_Rage_Calculation", function(BossData)
+    if Client.GetLocalPlayer():GetControlledCharacter() == nil then return end
+    if Client.GetLocalPlayer():GetControlledCharacter():GetTeam() ~= 1 then return end
+    local playerChara = Client.GetLocalPlayer():GetControlledCharacter()
+    MainHUD:CallEvent("BVP_HUD_Boss_Container_Display", 0)
     if (playerChara ~= nil) then
-        MainHUD:CallEvent("BVP_HUD_Boss_Container_Display", {1})
+        MainHUD:CallEvent("BVP_HUD_Boss_Container_Display", 1)
         local boss_health = playerChara:GetMaxHealth()
-        local players = NanosWorld:GetPlayers()
+        local players = Player.GetAll()
         playerChara:Subscribe("TakeDamage", function(character, damage, bone, type, from_direction, player)
             local result = math.ceil((damage * 0.2) + (#players))
             if BossData.BossRageMultiplier ~= nil then
@@ -36,35 +36,35 @@ Events:Subscribe("BVP_Client_Rage_Calculation", function(BossData)
 end)
 
 function Client_Rage_Check(result)
-    local RageLevel = Client:GetValue("BVP_RageReady")
+    local RageLevel = Client.GetValue("BVP_RageReady")
     local newRage = RageLevel + result
     if newRage > 100 then
-        Client:SetValue("BVP_RageReady", 100)
+        Client.SetValue("BVP_RageReady", 100)
     else
-        Client:SetValue("BVP_RageReady", newRage)
+        Client.SetValue("BVP_RageReady", newRage)
     end
     if newRage >= 100 then
-        local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+        local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
         if ChoosenLanguage == nil then
-            Events:CallRemote("BVP_GetLanguageOnNill", {})
+            Events.CallRemote("BVP_GetLanguageOnNill")
             return
         end
-        MainHUD:CallEvent("BVP_HUD_Boss_Rage", {ChoosenLanguage["HUD_Ability_Rage_Ready"]})
+        MainHUD:CallEvent("BVP_HUD_Boss_Rage", ChoosenLanguage["HUD_Ability_Rage_Ready"])
         return
     end
-    local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+    local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
     if ChoosenLanguage == nil then
-        Events:CallRemote("BVP_GetLanguageOnNill", {})
+        Events.CallRemote("BVP_GetLanguageOnNill")
         return
     end
     local text = ChoosenLanguage["HUD_Ability_Rage_Loading"]
-    text = text:gsub("%__PERCENTAGE__", tostring(newRage))
-    MainHUD:CallEvent("BVP_HUD_Boss_Rage", {text})
+    text = string.gsub(text, "%__PERCENTAGE__", tostring(newRage))
+    MainHUD:CallEvent("BVP_HUD_Boss_Rage", text)
 end
 
 function Client_Rage_Do()
-    local RageLevel = Client:GetValue("BVP_RageReady")
-    local playerChara = NanosWorld:GetLocalPlayer():GetControlledCharacter()
+    local RageLevel = Client.GetValue("BVP_RageReady")
+    local playerChara = Client.GetLocalPlayer():GetControlledCharacter()
     if playerChara ~= nil then
         if playerChara:GetTeam() ~= 1 then
             return
@@ -74,15 +74,15 @@ function Client_Rage_Do()
     end
     if RageLevel == nil then return end
     if RageLevel >= 100 then
-        Client:SetValue("BVP_RageReady", 0)
-        Events:CallRemote("BVP_BossAbilityExecute_Rage", {NanosWorld:GetLocalPlayer()})
-        local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+        Client.SetValue("BVP_RageReady", 0)
+        Events.CallRemote("BVP_BossAbilityExecute_Rage", Client.GetLocalPlayer())
+        local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
         if ChoosenLanguage == nil then
-            Events:CallRemote("BVP_GetLanguageOnNill", {})
+            Events.CallRemote("BVP_GetLanguageOnNill")
             return
         end
         local text = ChoosenLanguage["HUD_Ability_Rage_Loading"]
-        text = text:gsub("%__PERCENTAGE__", "0")
-        MainHUD:CallEvent("BVP_HUD_Boss_Rage", {text})
+        text = string.gsub(text, "%__PERCENTAGE__", "0")
+        MainHUD:CallEvent("BVP_HUD_Boss_Rage", text)
     end
 end

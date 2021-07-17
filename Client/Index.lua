@@ -21,30 +21,30 @@ MainHUD = WebUI("Main HUD", "file:///hud/Hud.html")
 OptionsHUD = WebUI("Options HUD", "file:///options/Options.html", false)
 
 -- REQUIREMENTS
-Package:Require("TriggerEvent.lua")
-Package:Require("CommunicationToClients.lua")
-Package:Require("RageCalculation.lua")
-Package:Require("JumpCalculation.lua")
-Package:Require("SpecialCalculation.lua")
-Package:Require("PlaySound.lua")
-Package:Require("KeyEvent.lua")
-Package:Require("Spectator.lua")
-Package:Require("OptionsEvents.lua")
-Package:Require("LocalTimer.lua")
-Package:Require("AddNametags.lua")
+Package.Require("TriggerEvent.lua")
+Package.Require("CommunicationToClients.lua")
+Package.Require("RageCalculation.lua")
+Package.Require("JumpCalculation.lua")
+Package.Require("SpecialCalculation.lua")
+Package.Require("PlaySound.lua")
+Package.Require("KeyEvent.lua")
+Package.Require("Spectator.lua")
+Package.Require("OptionsEvents.lua")
+Package.Require("LocalTimer.lua")
+Package.Require("AddNametags.lua")
 
 -- When LocalPlayer spawns, sets an event on it to trigger when we possesses a new character, to store the local controlled character locally. This event is only called once, see Package:Subscribe("Load") to load it when reloading a package
-NanosWorld:Subscribe("SpawnLocalPlayer", function(local_player)
+Client.Subscribe("SpawnLocalPlayer", function(local_player)
     local_player:Subscribe("Possess", function(player, character)
         UpdateLocalCharacter(character)
     end)
 end)
 
 -- When package loads, verify if LocalPlayer already exists (eg. when reloading the package), then try to get and store it's controlled character
-Package:Subscribe("Load", function()
-    Client:SetDiscordActivity("Waiting Round Start", "Boss VS Players Gamemode", "screenshot_173", "by Falaxir")
-    if (NanosWorld:GetLocalPlayer() ~= nil) then
-        UpdateLocalCharacter(NanosWorld:GetLocalPlayer():GetControlledCharacter())
+Package.Subscribe("Load", function()
+    Client.SetDiscordActivity("Waiting Round Start", "Boss VS Players Gamemode", "screenshot_173", "by Falaxir")
+    if (Client.GetLocalPlayer() ~= nil) then
+        UpdateLocalCharacter(Client.GetLocalPlayer():GetControlledCharacter())
     end
 end)
 
@@ -59,7 +59,7 @@ function UpdateLocalCharacter(character)
     -- Sets on character an event to update the health's UI after it takes damage
     character:Subscribe("TakeDamage", function(charac, damage, type, bone, from_direction, instigator)
         -- Plays a Hit Taken sound effect
-        Sound(Vector(), "NanosWorld::A_HitTaken_Feedback", true)
+        Sound(Vector(), "nanos-world::A_HitTaken_Feedback", true)
 
         -- Updates the Health UI
         UpdateHealth(charac:GetHealth())
@@ -110,20 +110,20 @@ end
 
 -- Function to update the Ammo's UI
 function UpdateAmmo(enable_ui, ammo, ammo_bag)
-    MainHUD:CallEvent("UpdateWeaponAmmo", {enable_ui, ammo, ammo_bag})
+    MainHUD:CallEvent("UpdateWeaponAmmo", enable_ui, ammo, ammo_bag)
 end
 
 -- Function to update the Health's UI
 function UpdateHealth(health)
-    MainHUD:CallEvent("UpdateHealth", {health})
+    MainHUD:CallEvent("UpdateHealth", health)
 end
 
 -- VOIP UI
-Player:Subscribe("VOIP", function(player, is_talking)
-    MainHUD:CallEvent("ToggleVoice", {player:GetName(), is_talking})
+Player.Subscribe("VOIP", function(player, is_talking)
+    MainHUD:CallEvent("ToggleVoice", player:GetName(), is_talking)
 end)
 
-Player:Subscribe("Destroy", function(player)
-    MainHUD:CallEvent("ToggleVoice", {player:GetName(), false})
-    MainHUD:CallEvent("UpdatePlayer", {player:GetID(), false})
+Player.Subscribe("Destroy", function(player)
+    MainHUD:CallEvent("ToggleVoice", player:GetName(), false)
+    MainHUD:CallEvent("UpdatePlayer", player:GetID(), false)
 end)

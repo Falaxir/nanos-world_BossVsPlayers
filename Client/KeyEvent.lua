@@ -16,7 +16,7 @@
 
 --]]
 
-Client:Subscribe("KeyUp", function(key_name)
+Client.Subscribe("KeyUp", function(key_name)
     if (key_name == "E") then
         Client_Rage_Do()
     end
@@ -35,27 +35,27 @@ optionsOpen = false
 
 function Client_OpenOptions()
     if not optionsOpen then
-        local localPlayer = NanosWorld:GetLocalPlayer()
+        local localPlayer = Client.GetLocalPlayer()
         local points = localPlayer:GetValue("BVP_BossPoints")
         local VolumeMusic = localPlayer:GetValue("BVP_VolumeMusic")
         local VolumeEffects = localPlayer:GetValue("BVP_VolumeEffects")
-        OptionsHUD:CallEvent("BVP_OptionsDisplayLanguage", {JSON.stringify(LANGUAGES_LIST)})
-        OptionsHUD:CallEvent("BVP_OptionsSetBossPoints", {points})
-        OptionsHUD:CallEvent("BVP_OptionsSetVolumeMusic", {VolumeMusic})
-        OptionsHUD:CallEvent("BVP_OptionsSetVolumeEffects", {VolumeEffects})
-        Client:SetMouseEnabled(true)
+        OptionsHUD:CallEvent("BVP_OptionsDisplayLanguage", JSON.stringify(LANGUAGES_LIST))
+        OptionsHUD:CallEvent("BVP_OptionsSetBossPoints", points)
+        OptionsHUD:CallEvent("BVP_OptionsSetVolumeMusic", VolumeMusic)
+        OptionsHUD:CallEvent("BVP_OptionsSetVolumeEffects", VolumeEffects)
+        Client.SetMouseEnabled(true)
         OptionsHUD:SetVisible(true)
         optionsOpen = true
     else
         OptionsHUD:SetVisible(false)
-        Client:SetMouseEnabled(false)
+        Client.SetMouseEnabled(false)
         optionsOpen = false
     end
 end
 
-Events:Subscribe("BVP_Client_GetPermanentData", function()
-    local player = NanosWorld:GetLocalPlayer()
-    local persistentData = Package:GetPersistentData()
+Events.Subscribe("BVP_Client_GetPermanentData", function()
+    local player = Client.GetLocalPlayer()
+    local persistentData = Package.GetPersistentData()
     local foundBVP_BossPoints = false
     local foundBVP_VolumeMusic = false
     local foundBVP_VolumeEffects = false
@@ -65,7 +65,7 @@ Events:Subscribe("BVP_Client_GetPermanentData", function()
         if key == "BVP_BossPoints" then
             player:SetValue("BVP_BossPoints", value)
             foundBVP_BossPoints = true
-            Events:CallRemote("BVP_UpdateThisPlayerBossPoints", {})
+            Events.CallRemote("BVP_UpdateThisPlayerBossPoints")
         end
         if key == "BVP_VolumeMusic" then
             player:SetValue("BVP_VolumeMusic", value)
@@ -82,7 +82,7 @@ Events:Subscribe("BVP_Client_GetPermanentData", function()
     end
     if not foundBVP_BossPoints or player:GetValue("BVP_BossPoints") == nil then
         player:SetValue("BVP_BossPoints", 0)
-        Events:CallRemote("BVP_UpdateThisPlayerBossPoints", {})
+        Events.CallRemote("BVP_UpdateThisPlayerBossPoints")
     end
     if not foundBVP_VolumeMusic or player:GetValue("BVP_VolumeMusic") == nil  then
         player:SetValue("BVP_VolumeMusic", 40)

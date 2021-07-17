@@ -19,20 +19,20 @@
 LANGUAGES_LIST = {}
 
 function LanguagesLoad()
-    Package:Log("Loading Languages...")
-    local LanguagesList = Package:GetFiles("Server/Languages", ".json")
+    Package.Log("Loading Languages...")
+    local LanguagesList = Package.GetFiles("Server/Languages", ".json")
     local LanguageList = {}
     for key,value in pairs(LanguagesList)
     do
-        local cfgFile = File("Packages/" .. Package:GetPath() .. "/" .. value)
+        local cfgFile = File("Packages/" .. Package.GetPath() .. "/" .. value)
         local cfgJson = JSON.parse(cfgFile:Read(cfgFile:Size()))
-        cfgJson.Language = value:gsub("%.json", "")
-        cfgJson.Language = cfgJson.Language:gsub("%Server/Languages/", "")
+        cfgJson.Language = string.gsub(value, "%.json", "")
+        cfgJson.Language = string.gsub(cfgJson.Language, "%Server/Languages/", "")
         table.insert(LanguageList, cfgJson)
     end
     if #LanguageList <= 0 then
-        Package:Error("[BVP] There is no languages!")
+        Package.Error("[BVP] There is no languages!")
     end
     LANGUAGES_LIST = LanguageList
-    Package:Log("Loading Languages COMPLETE!")
+    Package.Log("Loading Languages COMPLETE!")
 end

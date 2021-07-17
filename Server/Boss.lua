@@ -17,7 +17,7 @@
 --]]
 
 function BossCreateStartRound(bossData, BossAsset)
-    local PlayerNames = NanosWorld:GetPlayers()
+    local PlayerNames = Player.GetAll()
     local health_calc = ((100 * 2) * #PlayerNames) * bossData.BossHealthMultiplier
     local BossCharacters_local = Character(BVP_CONFIG.BossSpawnLocations[math.random(#BVP_CONFIG.BossSpawnLocations)], Rotator(), BossAsset)
     BossCharacters_local:SetMovementEnabled(false)
@@ -38,54 +38,54 @@ end
 
 -- Load all JSON Bosses inside BossList folder
 function BossLoad()
-    Package:Log("Loading Bosses...")
-    local BossList = Package:GetFiles("Server/BossList", ".json")
+    Package.Log("Loading Bosses...")
+    local BossList = Package.GetFiles("Server/BossList", ".json")
     local Bosses = {}
     for key,value in pairs(BossList)
     do
-        local cfgFile = File("Packages/" .. Package:GetPath() .. "/" .. value)
+        local cfgFile = File("Packages/" .. Package.GetPath() .. "/" .. value)
         local cfgJson = JSON.parse(cfgFile:Read(cfgFile:Size()))
         table.insert(Bosses, cfgJson)
     end
     if #Bosses <= 0 then
-        Package:Error("There is no boss! please check your BossList folder")
+        Package.Error("There is no boss! please check your BossList folder")
     end
-    Server:SetValue("BVP_BossList", Bosses)
-    Package:Log("Loading Bosses COMPLETE!")
+    Server.SetValue("BVP_BossList", Bosses)
+    Package.Log("Loading Bosses COMPLETE!")
 end
 
-Events:Subscribe("BVP_BossAbilityExecute_Jump", function(player)
-    local bossJson = Server:GetValue("BVP_BossData")
+Events.Subscribe("BVP_BossAbilityExecute_Jump", function(player)
+    local bossJson = Server.GetValue("BVP_BossData")
     local abilityImage = bossJson.BossImages["AbilityJumpImage"]
     if abilityImage["Image"] ~= "" and abilityImage["Image"] ~= nil and abilityImage["Time"] > 0 then
-        Events:BroadcastRemote("BVP_Client_HUD_Image", {abilityImage["Image"], abilityImage["Time"]})
+        Events.BroadcastRemote("BVP_Client_HUD_Image", abilityImage["Image"], abilityImage["Time"])
     end
     if #bossJson.BossSoundAbilities["Jump"] > 0 then
-        Events:BroadcastRemote("BVP_Client_PlayEffect", {bossJson.BossSoundAbilities["Jump"][math.random(#bossJson.BossSoundAbilities["Jump"])]})
+        Events.BroadcastRemote("BVP_Client_PlayEffect", bossJson.BossSoundAbilities["Jump"][math.random(#bossJson.BossSoundAbilities["Jump"])])
     end
-    Package:Call("boss-vs-players", bossJson.BossAbilities["JumpFunction"], {player})
+    Package.Call("boss-vs-players", bossJson.BossAbilities["JumpFunction"], player)
 end)
 
-Events:Subscribe("BVP_BossAbilityExecute_Rage", function(player)
-    local bossJson = Server:GetValue("BVP_BossData")
+Events.Subscribe("BVP_BossAbilityExecute_Rage", function(player)
+    local bossJson = Server.GetValue("BVP_BossData")
     local abilityImage = bossJson.BossImages["AbilityRageImage"]
     if abilityImage["Image"] ~= "" and abilityImage["Image"] ~= nil and abilityImage["Time"] > 0 then
-        Events:BroadcastRemote("BVP_Client_HUD_Image", {abilityImage["Image"], abilityImage["Time"]})
+        Events.BroadcastRemote("BVP_Client_HUD_Image", abilityImage["Image"], abilityImage["Time"])
     end
     if #bossJson.BossSoundAbilities["Rage"] > 0 then
-        Events:BroadcastRemote("BVP_Client_PlayEffect", {bossJson.BossSoundAbilities["Rage"][math.random(#bossJson.BossSoundAbilities["Rage"])]})
+        Events.BroadcastRemote("BVP_Client_PlayEffect", bossJson.BossSoundAbilities["Rage"][math.random(#bossJson.BossSoundAbilities["Rage"])])
     end
-    Package:Call("boss-vs-players", bossJson.BossAbilities["RageFunction"], {player})
+    Package.Call("boss-vs-players", bossJson.BossAbilities["RageFunction"], player)
 end)
 
-Events:Subscribe("BVP_BossAbilityExecute_Special", function(player)
-    local bossJson = Server:GetValue("BVP_BossData")
+Events.Subscribe("BVP_BossAbilityExecute_Special", function(player)
+    local bossJson = Server.GetValue("BVP_BossData")
     local abilityImage = bossJson.BossImages["AbilitySpecialImage"]
     if abilityImage["Image"] ~= "" and abilityImage["Image"] ~= nil and abilityImage["Time"] > 0 then
-        Events:BroadcastRemote("BVP_Client_HUD_Image", {abilityImage["Image"], abilityImage["Time"]})
+        Events.BroadcastRemote("BVP_Client_HUD_Image", abilityImage["Image"], abilityImage["Time"])
     end
     if #bossJson.BossSoundAbilities["Special"] > 0 then
-        Events:BroadcastRemote("BVP_Client_PlayEffect", {bossJson.BossSoundAbilities["Special"][math.random(#bossJson.BossSoundAbilities["Special"])]})
+        Events.BroadcastRemote("BVP_Client_PlayEffect", bossJson.BossSoundAbilities["Special"][math.random(#bossJson.BossSoundAbilities["Special"])])
     end
-    Package:Call("boss-vs-players", bossJson.BossAbilities["SpecialFunction"], {player})
+    Package.Call("boss-vs-players", bossJson.BossAbilities["SpecialFunction"], player)
 end)

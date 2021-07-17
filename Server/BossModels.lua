@@ -17,12 +17,12 @@
 --]]
 
 function BossModelLoad()
-    Package:Log("Loading BossModels...")
-    local AList = Package:GetFiles("Server/BossModels", ".lua")
+    Package.Log("Loading BossModels...")
+    local AList = Package.GetFiles("Server/BossModels", ".lua")
     for key,value in pairs(AList)
     do
         local result = string.gsub(value, "Server/", "")
-        Package:Require(result)
+        Package.Require(result)
     end
-    Package:Log("Loading BossModels COMPLETE!")
+    Package.Log("Loading BossModels COMPLETE!")
 end

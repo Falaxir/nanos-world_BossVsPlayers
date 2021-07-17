@@ -16,32 +16,32 @@
 
 --]]
 
-OptionsHUD:Subscribe("BVP_Client_ResetBossPoints", function(newValue)
-    NanosWorld:GetLocalPlayer():SetValue("BVP_BossPoints", newValue)
-    Package:SetPersistentData("BVP_BossPoints", newValue)
-    Events:CallRemote("BVP_UpdateThisPlayerBossPoints", {})
-    Client:SendChatMessage("[BVP] BossPoints have been reset!")
+OptionsHUD.Subscribe(OptionsHUD, "BVP_Client_ResetBossPoints", function(newValue)
+    Client.GetLocalPlayer():SetValue("BVP_BossPoints", newValue)
+    Package.SetPersistentData("BVP_BossPoints", newValue)
+    Events.CallRemote("BVP_UpdateThisPlayerBossPoints")
+    Client.SendChatMessage("[BVP] BossPoints have been reset!")
 end)
 
-OptionsHUD:Subscribe("BVP_Client_ChangeVolumeMusic", function(newValue)
-    NanosWorld:GetLocalPlayer():SetValue("BVP_VolumeMusic", newValue)
-    Package:SetPersistentData("BVP_VolumeMusic", newValue)
+OptionsHUD.Subscribe(OptionsHUD, "BVP_Client_ChangeVolumeMusic", function(newValue)
+    Client.GetLocalPlayer():SetValue("BVP_VolumeMusic", newValue)
+    Package.SetPersistentData("BVP_VolumeMusic", newValue)
 end)
 
-OptionsHUD:Subscribe("BVP_Client_ChangeVolumeEffects", function(newValue)
-    NanosWorld:GetLocalPlayer():SetValue("BVP_VolumeEffects", newValue)
-    Package:SetPersistentData("BVP_VolumeEffects", newValue)
+OptionsHUD.Subscribe(OptionsHUD, "BVP_Client_ChangeVolumeEffects", function(newValue)
+    Client.GetLocalPlayer():SetValue("BVP_VolumeEffects", newValue)
+    Package.SetPersistentData("BVP_VolumeEffects", newValue)
 end)
 
-OptionsHUD:Subscribe("BVP_Client_ChangeLanguage", function(newValue)
+OptionsHUD.Subscribe(OptionsHUD, "BVP_Client_ChangeLanguage", function(newValue)
     for key,value in pairs(LANGUAGES_LIST)
     do
         if value.Language == newValue then
-            Events:Call("BVP_Client_SendPrivateChatMessage", {"CHAT_LanguageChanged", {__LANGUAGE__ = value.Language}})
-            NanosWorld:GetLocalPlayer():SetValue("BVP_Language", value)
-            Package:SetPersistentData("BVP_Language", value)
+            Events.Call("BVP_Client_SendPrivateChatMessage", "CHAT_LanguageChanged", {__LANGUAGE__ = value.Language})
+            Client.GetLocalPlayer():SetValue("BVP_Language", value)
+            Package.SetPersistentData("BVP_Language", value)
             return
         end
     end
-    Package:Log("Lang unknow")
+    Package.Log("Lang unknow")
 end)

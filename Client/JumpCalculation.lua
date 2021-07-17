@@ -16,12 +16,12 @@
 
 --]]
 
-Events:Subscribe("BVP_Client_Jump_Calculation", function(bossy)
-    if NanosWorld:GetLocalPlayer():GetControlledCharacter() == nil then return end
-    if NanosWorld:GetLocalPlayer():GetControlledCharacter():GetTeam() ~= 1 then return end
-    local playerChara = NanosWorld:GetLocalPlayer():GetControlledCharacter()
+Events.Subscribe("BVP_Client_Jump_Calculation", function(bossy)
+    if Client.GetLocalPlayer():GetControlledCharacter() == nil then return end
+    if Client.GetLocalPlayer():GetControlledCharacter():GetTeam() ~= 1 then return end
+    local playerChara = Client.GetLocalPlayer():GetControlledCharacter()
     if (playerChara ~= nil) then
-        local players = NanosWorld:GetPlayers()
+        local players = Player.GetAll()
         local result = math.ceil((#players))
         if bossy.BossJumpMultiplier ~= nil then
             result = result * bossy.BossJumpMultiplier
@@ -31,54 +31,54 @@ Events:Subscribe("BVP_Client_Jump_Calculation", function(bossy)
 end)
 
 function Client_Jump_Check(inc)
-    Client:SetValue("BVP_JumpReady", 0)
-    Timer:SetTimeout(1000, function(increm)
-        if Client:GetValue("BVP_GameState") > 2 then return false end
-        local old = Client:GetValue("BVP_JumpReady")
+    Client.SetValue("BVP_JumpReady", 0)
+    Timer.SetInterval(function(increm)
+        if Client.GetValue("BVP_GameState") > 2 then return false end
+        local old = Client.GetValue("BVP_JumpReady")
         local newValue = old + increm
         if newValue > 100 then
-            Client:SetValue("BVP_JumpReady", 100)
+            Client.SetValue("BVP_JumpReady", 100)
         else
-            Client:SetValue("BVP_JumpReady", newValue)
+            Client.SetValue("BVP_JumpReady", newValue)
         end
         if old + increm >= 100 then
-            local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+            local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
             if ChoosenLanguage == nil then
-                Events:CallRemote("BVP_GetLanguageOnNill", {})
+                Events.CallRemote("BVP_GetLanguageOnNill")
                 return
             end
-            MainHUD:CallEvent("BVP_HUD_Boss_Jump", {ChoosenLanguage["HUD_Ability_Jump_Ready"]})
+            MainHUD:CallEvent("BVP_HUD_Boss_Jump", ChoosenLanguage["HUD_Ability_Jump_Ready"])
             return true
         end
-        local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+        local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
         if ChoosenLanguage == nil then
-            Events:CallRemote("BVP_GetLanguageOnNill", {})
+            Events.CallRemote("BVP_GetLanguageOnNill")
             return
         end
         local text = ChoosenLanguage["HUD_Ability_Jump_Loading"]
-        text = text:gsub("%__PERCENTAGE__", tostring(old + increm))
-        MainHUD:CallEvent("BVP_HUD_Boss_Jump", {text})
-    end, {inc})
+        text = string.gsub(text, "%__PERCENTAGE__", tostring(old + increm))
+        MainHUD:CallEvent("BVP_HUD_Boss_Jump", text)
+    end, 1000, inc)
 end
 
 function Client_Jump_Do()
-    local JumpLevel = Client:GetValue("BVP_JumpReady")
-    local playerChara = NanosWorld:GetLocalPlayer():GetControlledCharacter()
+    local JumpLevel = Client.GetValue("BVP_JumpReady")
+    local playerChara = Client.GetLocalPlayer():GetControlledCharacter()
     if playerChara ~= nil then
         if playerChara:GetTeam() ~= 1 then return end
     else return
     end
     if JumpLevel >= 100 then
-        Client:SetValue("BVP_JumpReady", 0)
-        Events:CallRemote("BVP_BossAbilityExecute_Jump", {NanosWorld:GetLocalPlayer()})
-        local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+        Client.SetValue("BVP_JumpReady", 0)
+        Events.CallRemote("BVP_BossAbilityExecute_Jump", Client.GetLocalPlayer())
+        local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
         if ChoosenLanguage == nil then
-            Events:CallRemote("BVP_GetLanguageOnNill", {})
+            Events.CallRemote("BVP_GetLanguageOnNill")
             return
         end
         local text = ChoosenLanguage["HUD_Ability_Jump_Loading"]
-        text = text:gsub("%__PERCENTAGE__", "0")
-        MainHUD:CallEvent("BVP_HUD_Boss_Jump", {text})
-        Client:SetValue("BVP_JumpReady", 0)
+        text = string.gsub(text, "%__PERCENTAGE__", "0")
+        MainHUD:CallEvent("BVP_HUD_Boss_Jump", text)
+        Client.SetValue("BVP_JumpReady", 0)
     end
 end

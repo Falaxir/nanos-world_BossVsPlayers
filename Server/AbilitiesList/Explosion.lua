@@ -10,11 +10,11 @@ function Ability_Explosion(player)
     if chara ~= nil then
         chara:SetMovementEnabled(false)
         local sphere_trigger = Trigger(chara:GetLocation(), Rotator(), Vector(2000), TriggerType.Sphere, true, Color(1, 0, 0))
-        Timer:SetTimeout(3000, function(charater, trigger)
+        Timer.SetTimeout(function(charater, trigger)
             local bossLocation = charater:GetLocation()
-            Events:BroadcastRemote("BVP_Client_PlayEffect3D", {"NanosWorld::A_Explosion_Large", bossLocation})
+            Events.BroadcastRemote("BVP_Client_PlayEffect3D", "nanos-world::A_Explosion_Large", bossLocation)
             trigger:Destroy()
-            local PlayerNames = NanosWorld:GetPlayers()
+            local PlayerNames = Player.GetAll()
             for key,value in pairs(PlayerNames)
             do
                 local p_chara = value:GetControlledCharacter()
@@ -31,8 +31,8 @@ function Ability_Explosion(player)
             end
             charater:SetMovementEnabled(true)
             return false
-        end, {chara, sphere_trigger})
+        end, 3000, chara, sphere_trigger)
     end
 end
 
-Package:Export("Ability_Explosion", Ability_Explosion)
+Package.Export("Ability_Explosion", Ability_Explosion)

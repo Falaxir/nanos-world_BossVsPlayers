@@ -16,8 +16,8 @@
 
 --]]
 
-Trigger:Subscribe("Spawn", function(triggy)
-    Timer:SetTimeout(500, function(self)
+Trigger.Subscribe("Spawn", function(triggy)
+    Timer.SetTimeout(function(self)
         if self:GetValue("CanResupply") ~= nil then
             local triggerLocation = self:GetLocation()
             triggerLocation.Z = triggerLocation.Z + 90
@@ -33,5 +33,5 @@ Trigger:Subscribe("Spawn", function(triggy)
             self:SetValue("AttachedName", my_text_render)
         end
         return false
-    end, {triggy})
+    end, 500, triggy)
 end)

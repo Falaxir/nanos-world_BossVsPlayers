@@ -16,4 +16,4 @@ function Weapon_DesertEagleOnseShot(player)
     player:GetControlledCharacter():PickUp(my_weap)
 end
 
-Package:Export("Weapon_DesertEagleOnseShot", Weapon_DesertEagleOnseShot)
+Package.Export("Weapon_DesertEagleOnseShot", Weapon_DesertEagleOnseShot)

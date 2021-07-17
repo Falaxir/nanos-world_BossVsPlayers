@@ -17,27 +17,27 @@
 --]]
 
 function SpectatorSwitch()
-    local players = NanosWorld:GetPlayers()
-    local lastSpectator = Client:GetValue("BVP_LastSpectator")
+    local players = Player.GetAll()
+    local lastSpectator = Client.GetValue("BVP_LastSpectator")
     if lastSpectator == nil then
         lastSpectator = 0
     end
     lastSpectator = lastSpectator + 1
     if lastSpectator > #players then
-        Client:SetValue("BVP_LastSpectator", 0)
-        Client:Unspectate()
-        Events:Call("BVP_Client_HUD_Advert_important", {"HUD_Top_Spectator", nil, nil})
+        Client.SetValue("BVP_LastSpectator", 0)
+        Client.Unspectate()
+        Events.Call("BVP_Client_HUD_Advert_important", "HUD_Top_Spectator", nil, nil)
         return
     end
-    Client:SetValue("BVP_LastSpectator", lastSpectator)
-    Client:Spectate(players[lastSpectator])
-    --Events:Call("BVP_Client_HUD_Advert_important", {"Tu regarde: " .. players[lastSpectator]:GetName(), "You are watching: " .. players[lastSpectator]:GetName(), nil})
-    Events:Call("BVP_Client_HUD_Advert_important", {"HUD_Top_SpectatorSpectate", {__PLAYERNAME__ = players[lastSpectator]:GetName()}, nil})
+    Client.SetValue("BVP_LastSpectator", lastSpectator)
+    Client.Spectate(players[lastSpectator])
+    --Events.Call("BVP_Client_HUD_Advert_important", "Tu regarde: " .. players[lastSpectator]:GetName(), "You are watching: " .. players[lastSpectator]:GetName(), nil)
+    Events.Call("BVP_Client_HUD_Advert_important", "HUD_Top_SpectatorSpectate", {__PLAYERNAME__ = players[lastSpectator].GetName()}, nil)
 end
 
-Client:Subscribe("MouseUp", function(key_name, mouse_x, mouse_y)
+Client.Subscribe("MouseUp", function(key_name, mouse_x, mouse_y)
     if (key_name == "RightMouseButton") then
-        local player = NanosWorld:GetLocalPlayer()
+        local player = Client.GetLocalPlayer()
         if player:GetControlledCharacter() == nil then
             SpectatorSwitch()
         end

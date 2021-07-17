@@ -17,14 +17,14 @@ function Weapon_BaguettePewPew(player)
         prop:SetCollision(0)
         prop:SetScale(Vector(3, 3, 3))
         prop:AddImpulse(forward_vector * Vector(3000))
-        Timer:SetTimeout(4000, function(propy)
+        Timer.SetTimeout(function(propy)
             if (propy ~= nil) then
                 propy:Destroy()
             end
             return false
-        end, {prop})
+        end, 4000, prop)
     end)
     player:GetControlledCharacter():PickUp(my_weap)
 end
 
-Package:Export("Weapon_BaguettePewPew", Weapon_BaguettePewPew)
+Package.Export("Weapon_BaguettePewPew", Weapon_BaguettePewPew)

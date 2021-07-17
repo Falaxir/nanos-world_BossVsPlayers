@@ -17,12 +17,12 @@
 --]]
 
 function AbilityLoad()
-    Package:Log("Loading Abilities...")
-    local AList = Package:GetFiles("Server/AbilitiesList", ".lua")
+    Package.Log("Loading Abilities...")
+    local AList = Package.GetFiles("Server/AbilitiesList", ".lua")
     for key,value in pairs(AList)
     do
         local result = string.gsub(value, "Server/", "")
-        Package:Require(result)
+        Package.Require(result)
     end
-    Package:Log("Loading Abilities COMPLETE!")
+    Package.Log("Loading Abilities COMPLETE!")
 end

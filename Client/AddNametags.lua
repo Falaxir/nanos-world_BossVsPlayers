@@ -83,8 +83,8 @@ function RemoveNametag(player, character)
 end
 
 -- Adds a new Nametag to a character which was possessed
-Character:Subscribe("Possessed", function(character, player)
-    if NanosWorld:GetLocalPlayer():GetID() == player:GetID() then return end
+Character.Subscribe("Possessed", function(character, player)
+    if Client.GetLocalPlayer():GetID() == player:GetID() then return end
     if character:GetTeam() == 1 then
         AddBossNametag(player, character)
     else
@@ -93,12 +93,12 @@ Character:Subscribe("Possessed", function(character, player)
 end)
 
 -- Removes the Nametag from a character which was unpossessed
-Character:Subscribe("UnPossessed", function(character, player)
+Character.Subscribe("UnPossessed", function(character, player)
     RemoveNametag(player, character)
 end)
 
 -- When a Player is spawned - for when you connect and there is already Player's connected
-Player:Subscribe("Spawn", function(player)
-    RemoveNametag(player)
-    AddNametag(player)
+Player.Subscribe("Spawn", function(player)
+    RemoveNametag(player, nil)
+    AddNametag(player, nil)
 end)

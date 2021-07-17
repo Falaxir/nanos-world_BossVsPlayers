@@ -1,11 +1,12 @@
 {
   "RoundTimeLimitSeconds": 540,
   "RoundPrepareTimeSeconds": 5,
+  "ResupplyTimeSeconds": 30,
   "GlobalSpeedMultiplier": 1.2,
   "TimeModulePackageEnabled": "false",
   "PlayerCharacters": [
-    "NanosWorld::SK_Male",
-    "NanosWorld::SK_Female"
+    "nanos-world::SK_Male",
+    "nanos-world::SK_Female"
   ],
   "PlayerSpawnLocations": [
     "-2352, -6579, 313",
@@ -16,6 +17,21 @@
   ],
   "BossSpawnLocations": [
     "4084, 8175, 238"
+  ],
+  "ResupplyLocations": [
+    "8285, 4350, 353",
+    "2213, -5014, 961",
+    "522, -9044, 199",
+    "-7198, -9727, 185",
+    "-10833, -3741, 184",
+    "-7754, 3759, 462",
+    "-6207, 7624, 199",
+    "882, 8169, 227",
+    "-130, 470, 575",
+    "-373, -3234, 978",
+    "-5255, -4900, 863",
+    "-5083, 2173, 1339",
+    "-11878, 1186, 177"
   ],
   "AdministratorsId": [
     "8a7cbab7-a0de-420c-b997-771b723de1d3"

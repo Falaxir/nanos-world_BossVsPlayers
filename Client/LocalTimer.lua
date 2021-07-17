@@ -18,10 +18,10 @@
 
 local BVP_BGM_isPlaying = false
 
-Timer:SetTimeout(1000, function()
-    local state = Client:GetValue("BVP_GameState")
-    local musicPlaying = Client:GetValue("BVP_Client_BGM")
-    local volume = NanosWorld:GetLocalPlayer():GetValue("BVP_VolumeMusic")
+Timer.SetInterval(function()
+    local state = Client.GetValue("BVP_GameState")
+    local musicPlaying = Client.GetValue("BVP_Client_BGM")
+    local volume = Client.GetLocalPlayer():GetValue("BVP_VolumeMusic")
     if state == 2 then
         if musicPlaying ~= nil then
             if musicPlaying:IsValid() then
@@ -37,9 +37,9 @@ Timer:SetTimeout(1000, function()
             if musicPlaying:IsValid() then
                 musicPlaying:Stop()
                 musicPlaying:Destroy()
-                Client:SetValue("BVP_Client_BGM", nil)
+                Client.SetValue("BVP_Client_BGM", nil)
             end
         end
     end
     return true
-end)
+end, 1000)

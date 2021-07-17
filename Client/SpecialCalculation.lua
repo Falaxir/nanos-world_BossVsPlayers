@@ -16,12 +16,12 @@
 
 --]]
 
-Events:Subscribe("BVP_Client_Special_Calculation", function(BossData)
-    if NanosWorld:GetLocalPlayer():GetControlledCharacter() == nil then return end
-    if NanosWorld:GetLocalPlayer():GetControlledCharacter():GetTeam() ~= 1 then return end
-    local playerChara = NanosWorld:GetLocalPlayer():GetControlledCharacter()
+Events.Subscribe("BVP_Client_Special_Calculation", function(BossData)
+    if Client.GetLocalPlayer():GetControlledCharacter() == nil then return end
+    if Client.GetLocalPlayer():GetControlledCharacter():GetTeam() ~= 1 then return end
+    local playerChara = Client.GetLocalPlayer():GetControlledCharacter()
     if (playerChara ~= nil) then
-        local players = NanosWorld:GetPlayers()
+        local players = Player.GetAll()
         local result = math.ceil((#players * 0.25))
         if BossData.BossSpecialMultiplier ~= nil then
             result = result * BossData.BossSpecialMultiplier
@@ -31,39 +31,39 @@ Events:Subscribe("BVP_Client_Special_Calculation", function(BossData)
 end)
 
 function Client_Special_Check(inc)
-    Client:SetValue("BVP_SpecialReady", 0)
-    Timer:SetTimeout(1000, function(increm)
-        if Client:GetValue("BVP_GameState") > 2 then return false end
-        local old = Client:GetValue("BVP_SpecialReady")
+    Client.SetValue("BVP_SpecialReady", 0)
+    Timer.SetInterval(function(increm)
+        if Client.GetValue("BVP_GameState") > 2 then return false end
+        local old = Client.GetValue("BVP_SpecialReady")
         local newValue = old + increm
         if newValue > 100 then
-            Client:SetValue("BVP_SpecialReady", 100)
+            Client.SetValue("BVP_SpecialReady", 100)
         else
-            Client:SetValue("BVP_SpecialReady", newValue)
+            Client.SetValue("BVP_SpecialReady", newValue)
         end
         if old + increm >= 100 then
-            local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+            local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
             if ChoosenLanguage == nil then
-                Events:CallRemote("BVP_GetLanguageOnNill", {})
+                Events.CallRemote("BVP_GetLanguageOnNill")
                 return
             end
-            MainHUD:CallEvent("BVP_HUD_Boss_Special", {ChoosenLanguage["HUD_Ability_Special_Ready"]})
+            MainHUD:CallEvent("BVP_HUD_Boss_Special", ChoosenLanguage["HUD_Ability_Special_Ready"])
             return true
         end
-        local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+        local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
         if ChoosenLanguage == nil then
-            Events:CallRemote("BVP_GetLanguageOnNill", {})
+            Events.CallRemote("BVP_GetLanguageOnNill")
             return
         end
         local text = ChoosenLanguage["HUD_Ability_Special_Loading"]
-        text = text:gsub("%__PERCENTAGE__", tostring(old + increm))
-        MainHUD:CallEvent("BVP_HUD_Boss_Special", {text})
-    end, {inc})
+        text = string.gsub(text, "%__PERCENTAGE__", tostring(old + increm))
+        MainHUD:CallEvent("BVP_HUD_Boss_Special", text)
+    end, 1000, inc)
 end
 
 function Client_Special_Do()
-    local SpecialLevel = Client:GetValue("BVP_SpecialReady")
-    local playerChara = NanosWorld:GetLocalPlayer():GetControlledCharacter()
+    local SpecialLevel = Client.GetValue("BVP_SpecialReady")
+    local playerChara = Client.GetLocalPlayer():GetControlledCharacter()
     if playerChara ~= nil then
         if playerChara:GetTeam() ~= 1 then
             return
@@ -72,15 +72,15 @@ function Client_Special_Do()
         return
     end
     if SpecialLevel >= 100 then
-        Client:SetValue("BVP_SpecialReady", 0)
-        Events:CallRemote("BVP_BossAbilityExecute_Special", {NanosWorld:GetLocalPlayer()})
-        local ChoosenLanguage = NanosWorld:GetLocalPlayer():GetValue("BVP_Language")
+        Client.SetValue("BVP_SpecialReady", 0)
+        Events.CallRemote("BVP_BossAbilityExecute_Special", Client.GetLocalPlayer())
+        local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
         if ChoosenLanguage == nil then
-            Events:CallRemote("BVP_GetLanguageOnNill", {})
+            Events.CallRemote("BVP_GetLanguageOnNill")
             return
         end
         local text = ChoosenLanguage["HUD_Ability_Special_Loading"]
-        text = text:gsub("%__PERCENTAGE__", "0")
-        MainHUD:CallEvent("BVP_HUD_Boss_Special", {text})
+        text = string.gsub(text, "%__PERCENTAGE__", "0")
+        MainHUD:CallEvent("BVP_HUD_Boss_Special", text)
     end
 end

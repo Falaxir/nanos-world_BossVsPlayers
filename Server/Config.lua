@@ -27,14 +27,14 @@ function Split(s, delimiter)
 end
 
 function ConfigLoad()
-    Package:Log("Loading Config...")
-    local cfgFile = File("Packages/" .. Package:GetPath() .. "/Server/Config.json")
+    Package.Log("Loading Config...")
+    local cfgFile = File("Packages/" .. Package.GetPath() .. "/Server/Config.json")
     local cfgJson = JSON.parse(cfgFile:Read(cfgFile:Size()))
     BVP_CONFIG = cfgJson
     NewPlayerSpawnLocations = {}
     for key,value in pairs(BVP_CONFIG.PlayerSpawnLocations)
     do
-        local newVectorTXT = value:gsub("% ", "")
+        local newVectorTXT = string.gsub(value, "% ", "")
         newVectorTXT = Split(newVectorTXT, ",")
         local newVector = Vector(tonumber(newVectorTXT[1]), tonumber(newVectorTXT[2]), tonumber(newVectorTXT[3]))
         table.insert(NewPlayerSpawnLocations, newVector)
@@ -43,11 +43,20 @@ function ConfigLoad()
     NewBossSpawnLocations = {}
     for key,value in pairs(BVP_CONFIG.BossSpawnLocations)
     do
-        local newVectorTXT = value:gsub("% ", "")
+        local newVectorTXT = string.gsub(value, "% ", "")
         newVectorTXT = Split(newVectorTXT, ",")
         local newVector = Vector(tonumber(newVectorTXT[1]), tonumber(newVectorTXT[2]), tonumber(newVectorTXT[3]))
         table.insert(NewBossSpawnLocations, newVector)
     end
     BVP_CONFIG.BossSpawnLocations = NewBossSpawnLocations
-    Package:Log("Loading Config COMPLETE!")
+    NewResupplyLocations = {}
+    for key,value in pairs(BVP_CONFIG.ResupplyLocations)
+    do
+        local newVectorTXT = string.gsub(value, "% ", "")
+        newVectorTXT = Split(newVectorTXT, ",")
+        local newVector = Vector(tonumber(newVectorTXT[1]), tonumber(newVectorTXT[2]), tonumber(newVectorTXT[3]))
+        table.insert(NewResupplyLocations, newVector)
+    end
+    BVP_CONFIG.ResupplyLocations = NewResupplyLocations
+    Package.Log("Loading Config COMPLETE!")
 end

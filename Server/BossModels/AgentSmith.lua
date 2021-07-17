@@ -5,4 +5,4 @@ function BossModel_AgentSmith(player, BossData)
     -- End minimum required
 end
 
-Package:Export("BossModel_AgentSmith", BossModel_AgentSmith)
+Package.Export("BossModel_AgentSmith", BossModel_AgentSmith)

@@ -5,4 +5,4 @@ function BossModel_TerryCrews(player, BossData)
     -- End minimum required
 end
 
-Package:Export("BossModel_TerryCrews", BossModel_TerryCrews)
+Package.Export("BossModel_TerryCrews", BossModel_TerryCrews)

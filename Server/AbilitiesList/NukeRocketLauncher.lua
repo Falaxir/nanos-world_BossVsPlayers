@@ -25,12 +25,12 @@ function Ability_NukeRocketLauncher(player)
         prop:Subscribe("Hit", function(self, intensity)
             if (self ~= nil) then
                 local propLocation = self:GetLocation()
-                Events:BroadcastRemote("BVP_Client_PlayEffect3D", {"NanosWorld::A_Explosion_Large", bossLocation})
+                Events.BroadcastRemote("BVP_Client_PlayEffect3D", "nanos-world::A_Explosion_Large", bossLocation)
                 local theTrigger = self:GetValue("TriggerAttached")
                 if theTrigger ~= nil then
                     theTrigger:Destroy()
                 end
-                local PlayerNames = NanosWorld:GetPlayers()
+                local PlayerNames = Player.GetAll()
                 for key,value in pairs(PlayerNames)
                 do
                     local p_chara = value:GetControlledCharacter()
@@ -55,4 +55,4 @@ function Ability_NukeRocketLauncher(player)
     player:GetControlledCharacter():PickUp(my_weap)
 end
 
-Package:Export("Ability_NukeRocketLauncher", Ability_NukeRocketLauncher)
+Package.Export("Ability_NukeRocketLauncher", Ability_NukeRocketLauncher)

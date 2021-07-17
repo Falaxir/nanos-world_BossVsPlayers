@@ -17,12 +17,12 @@
 --]]
 
 function BossWeaponsLoad()
-    Package:Log("Loading BossWeapons...")
-    local AList = Package:GetFiles("Server/BossWeapons", ".lua")
+    Package.Log("Loading BossWeapons...")
+    local AList = Package.GetFiles("Server/BossWeapons", ".lua")
     for key,value in pairs(AList)
     do
         local result = string.gsub(value, "Server/", "")
-        Package:Require(result)
+        Package.Require(result)
     end
-    Package:Log("Loading BossWeapons COMPLETE!")
+    Package.Log("Loading BossWeapons COMPLETE!")
 end

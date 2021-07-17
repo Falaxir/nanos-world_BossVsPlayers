@@ -26,7 +26,7 @@ function PlayerIsAdmin(sender)
     return false
 end
 
-Server:Subscribe("Chat", function(text, sender)
+Server.Subscribe("Chat", function(text, sender)
     if text == "/kill" then
         local playerChar = sender:GetControlledCharacter()
         if playerChar ~= nil then
@@ -38,33 +38,33 @@ Server:Subscribe("Chat", function(text, sender)
     end
     if text == "/forceWait" then
         if PlayerIsAdmin(sender) then
-            local waiting = Server:GetValue("BVP_ForceWait")
+            local waiting = Server.GetValue("BVP_ForceWait")
             if waiting then
-                Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_CMD_ForceWaitDisable", nil})
-                Server:SetValue("BVP_ForceWait", false)
+                Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_CMD_ForceWaitDisable", nil)
+                Server.SetValue("BVP_ForceWait", false)
             else
-                Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_CMD_ForceWaitEnable", nil})
-                Server:SetValue("BVP_ForceWait", true)
+                Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_CMD_ForceWaitEnable", nil)
+                Server.SetValue("BVP_ForceWait", true)
             end
         else
-            Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_PermissionDenied", nil})
+            Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_PermissionDenied", nil)
         end
     end
     if text == "/forceBoss" then
         if PlayerIsAdmin(sender) then
-            Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_CMD_ForceBoss", nil})
+            Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_CMD_ForceBoss", nil)
             sender:SetValue("BVP_BossPoints", 99)
-            Package:SetPersistentData("BVP_BossPoints", 99)
+            Package.SetPersistentData("BVP_BossPoints", 99)
         else
-            Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_PermissionDenied", nil})
+            Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_PermissionDenied", nil)
         end
     end
     if text == "/forceEnd" then
         if PlayerIsAdmin(sender) then
-            Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_CMD_ForceEnd", nil})
-            Server:SetValue("BVP_AliveTeammatesPlayers", 0)
+            Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_CMD_ForceEnd", nil)
+            Server.SetValue("BVP_AliveTeammatesPlayers", 0)
         else
-            Events:CallRemote("BVP_Client_SendPrivateChatMessage", sender, {"CHAT_PermissionDenied", nil})
+            Events.CallRemote("BVP_Client_SendPrivateChatMessage", sender, "CHAT_PermissionDenied", nil)
         end
     end
 end)

@@ -18,27 +18,27 @@
 
 function SpawnNewAmmoRessuply(location)
     local ressuplyTrigger = Trigger(location, Rotator(), Vector(200), TriggerType.Sphere, true, Color(0, 1, 0))
-    ressuplyTrigger:SetValue("CanResupply", true, true)
+    ressuplyTrigger:SetValue("CanResupply", true)
     ressuplyTrigger:Subscribe("BeginOverlap", function(trigger, actor_triggering)
-        if NanosWorld:IsA(actor_triggering, Character) then
+        if NanosUtils.IsA(actor_triggering, Character) then
             if actor_triggering:GetTeam() == 1 then return end
             if trigger:GetValue("CanResupply") then
                 local entityChar = actor_triggering:GetPicked()
                 if entityChar ~= nil then
-                    if NanosWorld:IsA(entityChar, Weapon) then
+                    if NanosUtils.IsA(entityChar, Weapon) then
                         if entityChar:GetAmmoBag() >= 400 then return end
                         entityChar:SetAmmoBag(400)
                         trigger:SetValue("CanResupply", false)
                         trigger:SetVisibility(false)
                         local playerChar = actor_triggering:GetPlayer()
                         if playerChar ~= nil then
-                            Events:CallRemote("BVP_Client_SendPrivateChatMessage", playerChar, {"CHAT_AmmoResupplied", nil})
+                            Events.CallRemote("BVP_Client_SendPrivateChatMessage", playerChar, "CHAT_AmmoResupplied", nil)
                         end
-                        Timer:SetTimeout(30000, function(triggy)
+                        Timer.SetTimeout(function(triggy)
                             triggy:SetValue("CanResupply", true)
                             triggy:SetVisibility(true)
                             return false
-                        end, {trigger})
+                        end, BVP_CONFIG.ResupplyTimeSeconds * 1000, trigger)
                     end
                 end
             end

@@ -1,5 +1,5 @@
 function Ability_Bonk(player)
-    local playersList = NanosWorld:GetPlayers()
+    local playersList = Player.GetAll()
     for key,value in pairs(playersList)
     do
         local chara = value:GetControlledCharacter()
@@ -9,8 +9,8 @@ function Ability_Bonk(player)
             end
         end
     end
-    Timer:SetTimeout(8000, function()
-        local playersList = NanosWorld:GetPlayers()
+    Timer.SetTimeout(function()
+        local playersList = Player.GetAll()
         for key,value in pairs(playersList)
         do
             local chara = value:GetControlledCharacter()
@@ -20,7 +20,7 @@ function Ability_Bonk(player)
                 end
             end
         end
-    end)
+    end, 8000)
 end
 
-Package:Export("Ability_Bonk", Ability_Bonk)
+Package.Export("Ability_Bonk", Ability_Bonk)
