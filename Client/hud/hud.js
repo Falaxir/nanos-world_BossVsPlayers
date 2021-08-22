@@ -95,6 +95,21 @@ Events.Subscribe("BVP_HUD_Advert_bottom_two", function(txt) {
     document.querySelector("#hud_bottom_advert_two").style.display = "block";
 });
 
+Events.Subscribe("BVP_HUD_BossInfo", function (dataJson) {
+    if (dataJson == null)
+        return document.querySelector("#hud-boss-info").style.display = "none";
+    var result = JSON.parse(dataJson)
+    document.querySelector("#hud-boss-info-name").innerHTML = result[0]
+    document.querySelector("#hud-boss-info-description").innerHTML = result[1]
+    document.querySelector("#hud-boss-info-jump-title").innerHTML = result[2]
+    document.querySelector("#hud-boss-info-jump").innerHTML = result[3]
+    document.querySelector("#hud-boss-info-rage-title").innerHTML = result[4]
+    document.querySelector("#hud-boss-info-rage").innerHTML = result[5]
+    document.querySelector("#hud-boss-info-special-title").innerHTML = result[6]
+    document.querySelector("#hud-boss-info-special").innerHTML = result[7]
+    document.querySelector("#hud-boss-info").style.display = "block";
+})
+
 // Registers for ToggleVoice from Scripting
 Events.Subscribe("ToggleVoice", function(name, enable) {
     const existing_span = document.querySelector(`.voice_chat#${name}`);

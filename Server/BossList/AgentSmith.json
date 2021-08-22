@@ -1,7 +1,7 @@
 {
   "BossName": "AgentSmith",
   "BossModelFunction": "BossModel_AgentSmith",
-  "BossDescription": "Now you are goind to die",
+  "BossDescription": "Now you are going to die",
   "BossSpeedMultiplier": 1.1,
   "BossRageMultiplier": 1.0,
   "BossJumpMultiplier": 3.0,

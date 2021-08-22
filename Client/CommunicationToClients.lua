@@ -22,6 +22,32 @@ Events.Subscribe("BVP_Client_GetLanguages", function (langs)
     LANGUAGES_LIST = langs
 end)
 
+Events.Subscribe("BVP_Client_GlowEveryone", function ()
+    local playerNames = Player.GetAll()
+    local clientPlyt = Client.GetLocalPlayer()
+    local clientChara = clientPlyt:GetControlledCharacter()
+    if clientChara == nil then return end
+    local highlight_color = Color(1, 0, 0, 0.5)
+    local highlight_color_invisible = Color(1, 0, 0, 2.5)
+    local teamGlow = 1
+    if clientChara:GetTeam() == 1 then
+        highlight_color = Color(10, 2.5, 0, 2.5)
+        teamGlow = 2
+    end
+    --Client.SetHighlightColor(highlight_color_invisible, 0)
+    --Client.SetHighlightColor(highlight_color_invisible, 1)
+    Client.SetHighlightColor(highlight_color, 2)
+    --Client.SetHighlightColor(highlight_color_invisible, 2)
+    for i, v in pairs(playerNames) do
+        local chara = v:GetControlledCharacter()
+        if chara ~= nil then
+            if chara:GetTeam() == teamGlow then
+                chara:SetHighlightEnabled(true, 2)
+            end
+        end
+    end
+end)
+
 Events.Subscribe("BVP_Client_StartGame", function(bossData, BossPlayer)
     Events.Call("BVP_Client_SendPrivateChatMessage", "CHAT_RoundBegin", nil)
     local playername = BossPlayer:GetAccountName()
@@ -82,6 +108,26 @@ Events.Subscribe("BVP_Client_SendPrivateChatMessage", function (type, tableCusto
         end
     end
     Client.SendChatMessage(text)
+end)
+
+Events.Subscribe("BVP_Client_HUD_BossInfo", function (bossData, timer)
+    local ResultData = {}
+    local ChoosenLanguage = Client.GetLocalPlayer():GetValue("BVP_Language")
+    table.insert(ResultData, bossData.BossName)
+    table.insert(ResultData, bossData.BossDescription)
+    table.insert(ResultData, bossData.BossAbilities["JumpFunction"])
+    table.insert(ResultData, ChoosenLanguage[bossData.BossAbilities["JumpFunction"]])
+    table.insert(ResultData, bossData.BossAbilities["RageFunction"])
+    table.insert(ResultData, ChoosenLanguage[bossData.BossAbilities["RageFunction"]])
+    table.insert(ResultData, bossData.BossAbilities["SpecialFunction"])
+    table.insert(ResultData, ChoosenLanguage[bossData.BossAbilities["SpecialFunction"]])
+    local ResultString = JSON.stringify(ResultData)
+    MainHUD:CallEvent("BVP_HUD_BossInfo", ResultString)
+    if timer == nil then return end
+    Timer.SetTimeout(function()
+        MainHUD:CallEvent("BVP_HUD_BossInfo", nil)
+        return false
+    end, (timer + 1) * 1000)
 end)
 
 Events.Subscribe("BVP_Client_HUD_Advert_important", function (type, tableCustomParameters, timer)

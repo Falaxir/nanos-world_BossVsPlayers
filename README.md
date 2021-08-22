@@ -23,8 +23,7 @@ Please go to the WIKI page
 
 # Knowed bugs
 
-The spectator can be buggy some times (need to click multiple times to switch player)
-A Spectator can spectate another spectator
+.
 
 # To do
 

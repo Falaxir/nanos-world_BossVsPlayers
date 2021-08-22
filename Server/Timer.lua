@@ -18,6 +18,8 @@
 
 Server.SetValue("BVP_TimeLimit", BVP_CONFIG.RoundTimeLimitSeconds)
 
+BVP_PLAYERS_GLOW = false
+
 Timer.SetInterval(function()
     local state = Server.GetValue("BVP_GameState")
     local playerNames = Player.GetAll()
@@ -43,6 +45,11 @@ Timer.SetInterval(function()
         Events.Call("BVP_StartGame", nil)
     end
     if state == 2 then
+        -- Disabled glow, waiting for next update.
+        --if BVP_AliveTeammatesPlayers <= BVP_CONFIG.GlowEveryoneWhenTeammatesLeftReach and not BVP_PLAYERS_GLOW then
+        --    BVP_PLAYERS_GLOW = true
+        --    Events.BroadcastRemote("BVP_Client_GlowEveryone")
+        --end
         if BVP_AliveTeammatesPlayers > 0 and BVP_AliveBossPlayers <= 0 then
             Events.Call("BVP_EndGame", 2)
         elseif BVP_AliveBossPlayers > 0 and BVP_AliveTeammatesPlayers <= 0 then

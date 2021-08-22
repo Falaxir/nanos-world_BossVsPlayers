@@ -15,7 +15,7 @@
   "HUD_Ability_Rage_Loading": "Rage a __PERCENTAGE__%",
   "HUD_Ability_Rage_Ready": "Rage PRET (appuie sur E)",
   "HUD_Ability_Jump_Loading": "Super Saut a __PERCENTAGE__%",
-  "HUD_Ability_Jump_Ready": "Super Saut PRET (appuie sur F)",
+  "HUD_Ability_Jump_Ready": "Super Saut PRET (Regarde l'endroit ou tu veux sauter, puis appuie sur F)",
   "HUD_Ability_Special_Loading": "Special a __PERCENTAGE__%",
   "HUD_Ability_Special_Ready": "Special PRET (appuie sur G)",
   "CHAT_LanguageChanged": "[<orange>BVP</>] <green>Language change sur: __LANGUAGE__</>",
@@ -28,7 +28,13 @@
   "CHAT_PlayerKilled": "<cyan>__INSTIGATOR__</> a tue <cyan>__PLAYERNAME__</>",
   "CHAT_PlayerDied": "<cyan>__PLAYERNAME__</> est mort",
   "CHAT_CMD_ForceBoss": "[<orange>BVP</>] <green>Boss force pour ce joueur au prochain round</>",
-  "CHAT_CMD_ForceEnd": "[<orange>BVP</>] <green>Force End success</>",
+  "CHAT_CMD_ForceEnd": "[<orange>BVP</>] <green>Force End complete</>",
   "CHAT_CMD_ForceWaitDisable": "[<orange>BVP</>] <green>Force Wait Actif</>",
-  "CHAT_CMD_ForceWaitEnable": "[<orange>BVP</>] <green>Force Wait Inactif</>"
+  "CHAT_CMD_ForceWaitEnable": "[<orange>BVP</>] <green>Force Wait Inactif</>",
+  "Ability_Bonk": "Geler tous les joueurs pendant un certain temps",
+  "Ability_Explosion": "Explosion a la position du Boss",
+  "Ability_Jump": "Regarde dans une direction puis saute super haut dans cette direction",
+  "Ability_NukeRocketLauncher": "Lance roquette avec une grosse explosion a l'impact",
+  "Ability_Speed": "Augmente la vitesse sur une courte periode",
+  "Ability_Uber": "Invincible sur une courte periode"
 }

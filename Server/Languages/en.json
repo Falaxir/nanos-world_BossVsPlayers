@@ -15,7 +15,7 @@
   "HUD_Ability_Rage_Loading": "Rage at __PERCENTAGE__%",
   "HUD_Ability_Rage_Ready": "Rage READY (press E)",
   "HUD_Ability_Jump_Loading": "Super Jump at __PERCENTAGE__%",
-  "HUD_Ability_Jump_Ready": "Super Jump READY (press F)",
+  "HUD_Ability_Jump_Ready": "Super Jump READY (look at the spot you want to jump, press F)",
   "HUD_Ability_Special_Loading": "Special at __PERCENTAGE__%",
   "HUD_Ability_Special_Ready": "Special READY (press G)",
   "CHAT_LanguageChanged": "[<orange>BVP</>] <green>Language changed to: __LANGUAGE__</>",
@@ -30,5 +30,11 @@
   "CHAT_CMD_ForceBoss": "[<orange>BVP</>] <green>Force Boss for this player next round</>",
   "CHAT_CMD_ForceEnd": "[<orange>BVP</>] <green>Force End success</>",
   "CHAT_CMD_ForceWaitDisable": "[<orange>BVP</>] <green>Force Wait Disabled</>",
-  "CHAT_CMD_ForceWaitEnable": "[<orange>BVP</>] <green>Force Wait Enabled</>"
+  "CHAT_CMD_ForceWaitEnable": "[<orange>BVP</>] <green>Force Wait Enabled</>",
+  "Ability_Bonk": "Freeze all players during a certain time",
+  "Ability_Explosion": "Explosion at the Boss position",
+  "Ability_Jump": "Look in a direction, then jump super high to this direction",
+  "Ability_NukeRocketLauncher": "Rocket Launcher with a huge explosion on impact",
+  "Ability_Speed": "Increase the speed during a short period",
+  "Ability_Uber": "Invincible during a short period"
 }

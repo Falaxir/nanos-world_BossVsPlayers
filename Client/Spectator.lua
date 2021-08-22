@@ -20,19 +20,24 @@ function SpectatorSwitch()
     local players = Player.GetAll()
     local lastSpectator = Client.GetValue("BVP_LastSpectator")
     if lastSpectator == nil then
-        lastSpectator = 0
+        lastSpectator = -1
     end
     lastSpectator = lastSpectator + 1
-    if lastSpectator > #players then
-        Client.SetValue("BVP_LastSpectator", 0)
-        Client.Unspectate()
-        Events.Call("BVP_Client_HUD_Advert_important", "HUD_Top_Spectator", nil, nil)
-        return
+    for i = lastSpectator, #players do
+        if players[i] ~= nil then
+            if players[i]:GetControlledCharacter() ~= nil then
+                lastSpectator = i
+                Client.Unspectate()
+                Client.SetValue("BVP_LastSpectator", lastSpectator)
+                Client.Spectate(players[lastSpectator])
+                Events.Call("BVP_Client_HUD_Advert_important", "HUD_Top_SpectatorSpectate", {__PLAYERNAME__ = players[lastSpectator]:GetName()}, nil)
+                return
+            end
+        end
     end
-    Client.SetValue("BVP_LastSpectator", lastSpectator)
-    Client.Spectate(players[lastSpectator])
-    --Events.Call("BVP_Client_HUD_Advert_important", "Tu regarde: " .. players[lastSpectator]:GetName(), "You are watching: " .. players[lastSpectator]:GetName(), nil)
-    Events.Call("BVP_Client_HUD_Advert_important", "HUD_Top_SpectatorSpectate", {__PLAYERNAME__ = players[lastSpectator].GetName()}, nil)
+    Client.SetValue("BVP_LastSpectator", -1)
+    Client.Unspectate()
+    Events.Call("BVP_Client_HUD_Advert_important", "HUD_Top_Spectator", nil, nil)
 end
 
 Client.Subscribe("MouseUp", function(key_name, mouse_x, mouse_y)

@@ -4,6 +4,8 @@
   "ResupplyTimeSeconds": 30,
   "GlobalSpeedMultiplier": 1.2,
   "TimeModulePackageEnabled": "false",
+  "GlowEveryoneWhenTeammatesLeftReach": 3,
+  "GlowEveryoneWhenTimeLeftReachSeconds": 60,
   "PlayerCharacters": [
     "nanos-world::SK_Male",
     "nanos-world::SK_Female"
